@@ -39,8 +39,8 @@
             text-transform: uppercase;
             letter-spacing: -0.07em;
             line-height: 0.85;
-            color: var(--jp-red);
-            font-style: italic; /* CAMBIO: Cursiva */
+            color: var(--jp-red); /* MANTENIDO EN ROJO */
+            font-style: italic;
             -webkit-text-stroke: 1px rgba(255,0,0,0.2);
         }
 
@@ -131,14 +131,14 @@
             display: flex;
         }
 
-        /* Hero Portada Background - CAMBIO: Nueva foto en Blanco y Negro */
+        /* Hero Portada Background - CAMBIO: foto portada.png en Blanco y Negro */
         .hero-portada {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2000&auto=format&fit=crop');
+                        url('portada.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            filter: grayscale(100%); /* Forzamos blanco y negro al fondo */
+            filter: grayscale(100%); 
         }
 
         /* Contenedor para que el contenido de la portada NO se vea gris */
