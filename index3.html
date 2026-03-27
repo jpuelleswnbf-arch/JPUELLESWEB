@@ -42,6 +42,7 @@
             color: var(--jp-red);
             /* Borde sutil para que resalte más si es necesario */
             -webkit-text-stroke: 1px rgba(255,0,0,0.2);
+            font-style: italic; /* Titular en cursiva */
         }
 
         .graffiti-font {
@@ -61,6 +62,16 @@
             background-color: var(--jp-black);
             border-color: var(--jp-black);
             transform: translateY(-2px);
+        }
+
+        /* Animación sutil para el botón de la portada */
+        @keyframes pulse-soft {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+        .btn-impact {
+            animation: pulse-soft 2s infinite;
         }
 
         .btn-outline {
@@ -131,13 +142,18 @@
             display: flex;
         }
 
-        /* Hero Portada Background */
+        /* Hero Portada Background - Nueva Imagen en Blanco y Negro */
         .hero-portada {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1581009146145-b5ef03a7403f?q=80&w=2000&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            filter: grayscale(100%); /* Aplicamos blanco y negro a toda la sección de fondo */
+        }
+        /* Revertimos el filtro para el contenido de texto para que el rojo se vea */
+        .hero-portada .max-w-7xl {
+            filter: grayscale(0%);
         }
     </style>
 </head>
@@ -188,10 +204,10 @@
                 </h2>
 
                 <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                    <a href="#original-hero" class="bg-white text-black px-10 py-5 font-black uppercase text-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-2xl">
+                    <a href="#original-hero" class="bg-white text-black px-10 py-5 font-black uppercase text-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-2xl btn-impact">
                         DESCUBRE EL POR QUE
                     </a>
-                    <p class="text-white text-lg md:text-xl font-medium max-w-md leading-tight opacity-90">
+                    <p class="text-white text-xl md:text-2xl font-bold max-w-lg leading-tight opacity-100">
                         Si Arnold no entrenaba como un atleta natural, ¿por qué lo haces tú?
                     </p>
                 </div>
