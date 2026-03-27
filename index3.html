@@ -24,7 +24,7 @@
             color: var(--jp-black);
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
-            overflow-x: hidden; /* Evita desbordamiento lateral */
+            overflow-x: hidden;
         }
 
         .heading-black {
@@ -37,12 +37,11 @@
         .portada-titulo {
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: -0.07em; /* Letras más juntas */
+            letter-spacing: -0.07em;
             line-height: 0.85;
             color: var(--jp-red);
-            /* Borde sutil para que resalte más si es necesario */
+            font-style: italic; /* CAMBIO: Cursiva */
             -webkit-text-stroke: 1px rgba(255,0,0,0.2);
-            font-style: italic; /* Titular en cursiva */
         }
 
         .graffiti-font {
@@ -62,16 +61,6 @@
             background-color: var(--jp-black);
             border-color: var(--jp-black);
             transform: translateY(-2px);
-        }
-
-        /* Animación sutil para el botón de la portada */
-        @keyframes pulse-soft {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
-        }
-        .btn-impact {
-            animation: pulse-soft 2s infinite;
         }
 
         .btn-outline {
@@ -142,18 +131,29 @@
             display: flex;
         }
 
-        /* Hero Portada Background - Nueva Imagen en Blanco y Negro */
+        /* Hero Portada Background - CAMBIO: Nueva foto en Blanco y Negro */
         .hero-portada {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1581009146145-b5ef03a7403f?q=80&w=2000&auto=format&fit=crop');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2000&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            filter: grayscale(100%); /* Aplicamos blanco y negro a toda la sección de fondo */
+            filter: grayscale(100%); /* Forzamos blanco y negro al fondo */
         }
-        /* Revertimos el filtro para el contenido de texto para que el rojo se vea */
-        .hero-portada .max-w-7xl {
-            filter: grayscale(0%);
+
+        /* Contenedor para que el contenido de la portada NO se vea gris */
+        .hero-content-wrapper {
+            filter: none !important;
+        }
+
+        /* Animación sutil para el botón */
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+        .animate-pulse-custom {
+            animation: pulse-red 2s infinite;
         }
     </style>
 </head>
@@ -193,7 +193,7 @@
 
     <!-- NUEVA PORTADA DE IMPACTO -->
     <section class="relative min-h-screen flex items-center hero-portada pt-20 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 w-full text-left">
+        <div class="max-w-7xl mx-auto px-6 w-full text-left hero-content-wrapper relative z-10">
             <div class="max-w-5xl">
                 <h1 class="text-5xl md:text-8xl lg:text-[110px] portada-titulo mb-4">
                     TE HAN MENTIDO CON LAS RUTINAS CLASICAS
@@ -204,17 +204,18 @@
                 </h2>
 
                 <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                    <a href="#original-hero" class="bg-white text-black px-10 py-5 font-black uppercase text-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-2xl btn-impact">
+                    <a href="#original-hero" class="bg-white text-black px-10 py-5 font-black uppercase text-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-2xl animate-pulse-custom">
                         DESCUBRE EL POR QUE
                     </a>
-                    <p class="text-white text-xl md:text-2xl font-bold max-w-lg leading-tight opacity-100">
+                    <!-- CAMBIO: Texto más grande -->
+                    <p class="text-white text-xl md:text-2xl font-medium max-w-xl leading-tight opacity-95">
                         Si Arnold no entrenaba como un atleta natural, ¿por qué lo haces tú?
                     </p>
                 </div>
             </div>
         </div>
         <!-- Flecha decorativa hacia abajo -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
             <a href="#original-hero" class="text-white opacity-50"><i data-lucide="chevron-down" size="48"></i></a>
         </div>
     </section>
