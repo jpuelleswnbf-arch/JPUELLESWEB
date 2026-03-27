@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>JPUELLES | Construye tu Físico - Culturismo Natural WNBF</title>
     <meta name="description" content="Especialista en Culturismo Natural WNBF. Gana músculo y pierde grasa con nutrición flexible y entrenamiento basado en evidencia. Únete al JPUELLES TEAM.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
@@ -19,7 +19,10 @@
             --jp-gray: #f4f4f5;
         }
 
-        body {
+        /* Ajustes para evitar movimientos laterales y asegurar responsive */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
             background-color: var(--jp-white);
             color: var(--jp-black);
             font-family: 'Inter', sans-serif;
@@ -96,6 +99,9 @@
 
         .image-container img {
             transition: transform 0.5s ease;
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .image-container:hover img {
@@ -118,13 +124,19 @@
         #mobile-menu.active {
             display: flex;
         }
+
+        /* Estilo específico para el texto de la portada con borde fino */
+        .hero-text-stroke {
+            -webkit-text-stroke: 1px #ffffff;
+            text-stroke: 1px #ffffff;
+        }
     </style>
 </head>
 <body>
 
     <!-- MENÚ SUPERIOR -->
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-zinc-200">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
             <a href="index.html" class="text-2xl font-black italic tracking-tighter uppercase">
                 J<span class="text-red-600">PUELLES</span>
             </a>
@@ -139,7 +151,7 @@
             </div>
 
             <!-- Mobile Toggle -->
-            <button class="md:hidden" id="menu-btn">
+            <button class="md:hidden p-2" id="menu-btn" aria-label="Abrir menú">
                 <i data-lucide="menu"></i>
             </button>
         </div>
@@ -154,52 +166,56 @@
         </div>
     </nav>
 
-    <!-- NUEVA PORTADA (HERO PRINCIPAL) -->
-    <header class="relative min-h-screen flex items-center pt-20 bg-black overflow-hidden">
+    <!-- NUEVA PORTADA (HERO PRINCIPAL ACTUALIZADO) -->
+    <header class="relative min-h-[90vh] md:min-h-screen flex items-center pt-20 bg-black overflow-hidden">
         <!-- Fondo en Blanco y Negro -->
         <div class="absolute inset-0 z-0 bg-black">
-            <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1920&auto=format&fit=crop" class="w-full h-full object-cover grayscale opacity-40" alt="Fondo Culturismo">
+            <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1920&auto=format&fit=crop" class="w-full h-full object-cover grayscale opacity-40" alt="Fondo Culturismo JPUELLES">
         </div>
         
         <!-- Contenido -->
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 text-left">
-            <h1 class="text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] xl:text-[9rem] font-black text-red-600 mb-6 leading-[0.85] uppercase" style="letter-spacing: -0.06em; -webkit-text-stroke: 2px #ffffff; text-shadow: 6px 6px 15px rgba(0,0,0,0.8);">
-                TE HAN MENTIDO<br>CON LAS RUTINAS<br>CLASICAS
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 text-left">
+            <!-- Título Principal Primero -->
+            <h1 class="text-[3.5rem] leading-[0.9] sm:text-7xl md:text-8xl lg:text-9xl font-black text-red-600 mb-8 uppercase tracking-tighter hero-text-stroke">
+                TE HAN MENTIDO<br>CON LAS RUTINAS<br>CLÁSICAS
             </h1>
             
-            <div class="flex flex-col xl:flex-row items-start xl:items-baseline gap-2 xl:gap-4 mb-12 text-white mt-8">
-                <span class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
-                    ¿NO PROGRESAS?
-                </span>
-                <span class="text-lg sm:text-xl md:text-2xl font-medium text-zinc-200 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] max-w-2xl">
-                    Si Arnold no entrenaba como un atleta natural, ¿por qué lo haces tú?
-                </span>
+            <!-- Subtítulo: Arnold y Frustración -->
+            <div class="flex flex-col gap-3 mb-12">
+                <p class="text-white text-xl sm:text-2xl md:text-3xl font-black uppercase italic tracking-tight bg-red-600 inline-block px-4 py-1 self-start">
+                    ¿POR QUÉ NO PROGRESAS?
+                </p>
+                <p class="text-lg sm:text-xl md:text-2xl font-semibold text-zinc-100 max-w-2xl leading-snug">
+                    Si Arnold no entrenaba como un atleta natural, <span class="text-red-500">¿por qué lo haces tú?</span> 
+                </p>
             </div>
             
-            <a href="#construye" class="inline-block bg-white text-black font-black uppercase tracking-widest px-14 py-6 text-xl md:text-2xl hover:bg-zinc-200 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] border-2 border-white">
-                ¿POR QUÉ?
-            </a>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#construye" class="inline-block bg-white text-black font-black uppercase tracking-widest px-8 md:px-14 py-4 md:py-6 text-lg md:text-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-xl border-2 border-white">
+                    DESCUBRE POR QUÉ
+                </a>
+            </div>
         </div>
     </header>
 
     <!-- ANTIGUO HERO (AHORA SECCIÓN 2) -->
-    <section id="construye" class="relative min-h-screen flex items-center pt-20">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+    <section id="construye" class="relative min-h-screen flex items-center py-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 items-center">
             <div class="z-10">
-                <h2 class="text-6xl md:text-8xl heading-black leading-none mb-6">
+                <h2 class="text-5xl sm:text-6xl md:text-8xl heading-black leading-none mb-6">
                     CONSTRUYE <br> <span class="text-red-600">TU FÍSICO</span>
                 </h2>
-                <p class="text-xl md:text-2xl text-zinc-600 mb-10 font-medium">
+                <p class="text-lg sm:text-xl md:text-2xl text-zinc-600 mb-10 font-medium">
                     Gana músculo, pierde grasa. <br>
                     <span class="text-zinc-400">Ciencia aplicada al culturismo natural.</span>
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="#contacto-form" class="btn-primary px-8 py-4">Unirme al Team</a>
-                    <a href="#gratis" class="btn-outline px-8 py-4">Guía Gratis</a>
+                    <a href="#contacto-form" class="btn-primary px-8 py-4 text-sm md:text-base">Unirme al Team</a>
+                    <a href="#gratis" class="btn-outline px-8 py-4 text-sm md:text-base">Guía Gratis</a>
                 </div>
             </div>
             <div class="relative">
-                <div class="absolute -top-10 -right-10 w-64 h-64 bg-red-50 rounded-full z-0"></div>
+                <div class="absolute -top-10 -right-10 w-48 h-48 md:w-64 md:h-64 bg-red-50 rounded-full z-0"></div>
                 <div class="image-container relative z-10 shadow-2xl">
                     <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=1000&auto=format&fit=crop" alt="Culturista entrenando" class="w-full grayscale hover:grayscale-0">
                 </div>
@@ -208,81 +224,80 @@
     </section>
 
     <!-- ATLETA NATURAL WNBF -->
-    <section class="py-16 section-white text-center">
+    <section class="py-16 section-white text-center overflow-hidden">
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-4xl md:text-6xl heading-black mb-10 text-black">
                 ATLETA NATURAL <span class="text-red-600">WNBF</span>
             </h2>
-            <img src="WNBF-Spain.png" alt="WNBF Spain" class="mx-auto max-w-full h-auto object-contain" style="max-height: 250px;">
+            <img src="WNBF-Spain.png" alt="WNBF Spain Logo" class="mx-auto max-w-full h-auto object-contain" style="max-height: 250px;">
         </div>
     </section>
 
     <!-- SECCIONES DE VALOR -->
-    <section class="py-24 section-white">
+    <section class="py-24 section-white overflow-hidden">
         <!-- Sección 1 -->
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center mb-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 md:gap-20 items-center mb-32">
             <div class="image-container">
                 <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1000&auto=format&fit=crop" alt="Nutrición Flexible">
             </div>
             <div>
-                <h2 class="text-4xl md:text-5xl heading-black mb-8 leading-tight">Experto en pérdida de grasa <br><span class="text-red-600">con nutrición flexible</span></h2>
-                <div class="space-y-6 text-zinc-600 text-lg leading-relaxed">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl heading-black mb-8 leading-tight">Experto en pérdida de grasa <br><span class="text-red-600">con nutrición flexible</span></h2>
+                <div class="space-y-6 text-zinc-600 text-base md:text-lg leading-relaxed">
                     <p>La pérdida de grasa no tiene por qué ser un calvario de restricciones insostenibles. Mi metodología se basa en la <strong>Nutrición Flexible</strong>, un sistema donde los datos mandan pero tus preferencias cuentan.</p>
-                    <p>Aprenderás a integrar los alimentos que te gustan mientras garantizamos el déficit calórico necesario y el aporte óptimo de proteína para preservar tu masa muscular. No es una dieta temporal, es un aprendizaje metabólico para toda la vida.</p>
+                    <p>Aprenderás a integrar los alimentos que te gustan mientras garantizamos el déficit calórico necesario y el aporte óptimo de proteína para preservar tu masa muscular.</p>
                 </div>
             </div>
         </div>
 
         <!-- Sección 2 -->
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center mb-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 md:gap-20 items-center mb-32">
             <div class="md:order-2 image-container">
                 <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000&auto=format&fit=crop" alt="Entrenamiento de Fuerza">
             </div>
-            <div class="md:order-1 text-right md:text-left">
-                <h2 class="text-4xl md:text-5xl heading-black mb-8 leading-tight">Ponte fuerte <br><span class="text-red-600">sin perder el tiempo</span></h2>
-                <div class="space-y-6 text-zinc-600 text-lg leading-relaxed">
+            <div class="md:order-1 text-left">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl heading-black mb-8 leading-tight">Ponte fuerte <br><span class="text-red-600">sin perder el tiempo</span></h2>
+                <div class="space-y-6 text-zinc-600 text-base md:text-lg leading-relaxed">
                     <p>El gimnasio es una herramienta, no tu segunda casa. Optimizamos cada serie y cada repetición mediante la <strong>Sobrecarga Progresiva</strong> y la selección de ejercicios biomecánicamente eficientes.</p>
-                    <p>Mi objetivo es que cada minuto que pases bajo la barra tenga un retorno directo en hipertrofia y fuerza. Menos volumen basura, más intensidad real. Resultados de élite para gente con agendas reales.</p>
+                    <p>Mi objetivo es que cada minuto que pases bajo la barra tenga un retorno directo en hipertrofia y fuerza. Menos volumen basura, más intensidad real.</p>
                 </div>
             </div>
         </div>
 
         <!-- Sección 3 -->
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="image-container">
                 <img src="https://images.unsplash.com/photo-1574680077505-ff09a93006ce?q=80&w=1000&auto=format&fit=crop" alt="Transformación Física">
             </div>
             <div>
-                <h2 class="text-4xl md:text-5xl heading-black mb-8 leading-tight">Consigue el físico que quieres <br><span class="text-red-600">ALCANZA TU MEJOR VERSION</span></h2>
-                <div class="space-y-6 text-zinc-600 text-lg leading-relaxed">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl heading-black mb-8 leading-tight">Consigue el físico que quieres <br><span class="text-red-600">ALCANZA TU MEJOR VERSIÓN</span></h2>
+                <div class="space-y-6 text-zinc-600 text-base md:text-lg leading-relaxed">
                     <p>Un físico estético y funcional es el pilar de una vida de éxito. No solo transformamos tu espejo; transformamos tu confianza, tu disciplina y tu salud a largo plazo.</p>
-                    <p>A través de un seguimiento exhaustivo y ajustes semanales, te llevaré de la mano hasta alcanzar ese punto que siempre creíste imposible. El compromiso es mutuo: yo pongo el mapa, tú pones la voluntad.</p>
+                    <p>A través de un seguimiento exhaustivo y ajustes semanales, te llevaré de la mano hasta alcanzar ese punto que siempre creíste imposible.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- PRESENTACIÓN JPUELLES TEAM -->
-    <section class="py-32 section-dark">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h2 class="text-5xl md:text-7xl heading-black mb-8 italic text-white">Esto es <span class="text-red-600">JPUELLES TEAM</span></h2>
-            <div class="inline-block px-4 py-2 bg-red-600 text-white font-black uppercase text-sm mb-8">
+    <section class="py-24 section-dark overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+            <h2 class="text-4xl sm:text-5xl md:text-7xl heading-black mb-8 italic text-white">Esto es <span class="text-red-600">JPUELLES TEAM</span></h2>
+            <div class="inline-block px-4 py-2 bg-red-600 text-white font-black uppercase text-xs sm:text-sm mb-8">
                 Culturista Natural WNBF | Competidor Men's Physique
             </div>
-            <p class="text-xl text-zinc-300 leading-relaxed mb-10 max-w-4xl mx-auto italic">
-                Mi nombre es J. Puelles y mi misión es elevar los estándares del culturismo natural. Represento la disciplina extrema de la WNBF y la estética del Men's Physique bajo una premisa innegociable: LA CIENCIA ES NUESTRA MEJOR ALIADA. En este equipo no vendemos humo ni atajos mágicos; vendemos resultados forjados en el estudio y el esfuerzo.
+            <p class="text-lg sm:text-xl text-zinc-300 leading-relaxed mb-10 max-w-4xl mx-auto italic">
+                Mi nombre es J. Puelles y mi misión es elevar los estándares del culturismo natural. Represento la disciplina extrema de la WNBF y la estética del Men's Physique bajo una premisa innegociable: LA CIENCIA ES NUESTRA MEJOR ALIADA.
             </p>
-            <div class="text-5xl text-white font-black mb-12 uppercase italic">J. Puelles</div>
+            <div class="text-4xl sm:text-5xl text-white font-black mb-12 uppercase italic">J. Puelles</div>
             
-            <!-- Fotos Grandes debajo de J. Puelles -->
             <div class="grid md:grid-cols-3 gap-6">
-                <div class="image-container h-[500px]">
+                <div class="image-container h-[400px] md:h-[500px]">
                     <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2adfcd?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover grayscale" alt="Atleta JPUELLES 1">
                 </div>
-                <div class="image-container h-[500px]">
+                <div class="image-container h-[400px] md:h-[500px]">
                     <img src="https://images.unsplash.com/photo-1532384748853-8f54a8f476e2?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover grayscale" alt="Atleta JPUELLES 2">
                 </div>
-                <div class="image-container h-[500px]">
+                <div class="image-container h-[400px] md:h-[500px]">
                     <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover grayscale" alt="Atleta JPUELLES 3">
                 </div>
             </div>
@@ -290,40 +305,40 @@
     </section>
 
     <!-- CULTURISMO NATURAL Y VALORES -->
-    <section class="py-24 section-white">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+    <section class="py-24 section-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-16 items-center">
             <div>
-                <h2 class="text-4xl md:text-5xl heading-black mb-8">NUESTRO CAMINO: <br><span class="text-red-600">ÉTICA Y HIERRO</span></h2>
-                <div class="space-y-6 text-zinc-600 text-lg">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl heading-black mb-8">NUESTRO CAMINO: <br><span class="text-red-600">ÉTICA Y HIERRO</span></h2>
+                <div class="space-y-6 text-zinc-600 text-base md:text-lg">
                     <p>El culturismo natural no es solo una categoría; es una filosofía de vida. Nos oponemos frontalmente al uso de sustancias dopantes que desvirtúan el mérito y ponen en riesgo la salud.</p>
-                    <p>Creemos en el potencial ilimitado del cuerpo humano cuando se le somete a un estímulo correcto y una nutrición de precisión. Nuestro equipo es un refugio para aquellos atletas que quieren estar orgullosos de su progreso sin recurrir a agujas ni mentiras.</p>
+                    <p>Creemos en el potencial ilimitado del cuerpo humano cuando se le somete a un estímulo correcto y una nutrición de precisión.</p>
                 </div>
-                <div class="mt-12 flex gap-8">
+                <div class="mt-12 flex flex-wrap gap-8 justify-start">
                     <div class="text-center">
-                        <div class="text-4xl heading-black text-red-600">100%</div>
-                        <div class="text-xs font-bold uppercase tracking-widest">Natural</div>
+                        <div class="text-3xl md:text-4xl heading-black text-red-600">100%</div>
+                        <div class="text-[10px] font-bold uppercase tracking-widest">Natural</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-4xl heading-black text-red-600">WNBF</div>
-                        <div class="text-xs font-bold uppercase tracking-widest">Standard</div>
+                        <div class="text-3xl md:text-4xl heading-black text-red-600">WNBF</div>
+                        <div class="text-[10px] font-bold uppercase tracking-widest">Standard</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-4xl heading-black text-red-600">ZERO</div>
-                        <div class="text-xs font-bold uppercase tracking-widest">Drogas</div>
+                        <div class="text-3xl md:text-4xl heading-black text-red-600">ZERO</div>
+                        <div class="text-[10px] font-bold uppercase tracking-widest">Drogas</div>
                     </div>
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-4">
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=500&auto=format&fit=crop" alt="Atleta Natural 1" class="rounded grayscale hover:grayscale-0 transition">
-                <img src="https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?q=80&w=500&auto=format&fit=crop" alt="Atleta Natural 2" class="rounded mt-8 grayscale hover:grayscale-0 transition">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=500&auto=format&fit=crop" alt="Atleta Natural 1" class="rounded grayscale hover:grayscale-0 transition w-full h-auto">
+                <img src="https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?q=80&w=500&auto=format&fit=crop" alt="Atleta Natural 2" class="rounded mt-8 grayscale hover:grayscale-0 transition w-full h-auto">
             </div>
         </div>
     </section>
 
     <!-- RESULTADOS Y RESEÑAS - FONDO NEGRO -->
-    <section class="py-24 section-dark">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-5xl heading-black mb-16 underline decoration-red-600 underline-offset-8">RESULTADOS REALES</h2>
+    <section class="py-24 section-dark overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+            <h2 class="text-4xl sm:text-5xl heading-black mb-16 underline decoration-red-600 underline-offset-8">RESULTADOS REALES</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Reseña 1 -->
                 <div class="bg-zinc-900 p-8 border-b-4 border-red-600 shadow-sm text-left">
@@ -331,7 +346,7 @@
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                     <p class="text-zinc-300 italic mb-6">"El cambio no solo fue físico, fue mental. La nutrición flexible me permitió salir a cenar y seguir perdiendo grasa. ¡Increíble! 💪🔥"</p>
-                    <div class="font-black uppercase tracking-widest text-sm text-white">- Marc S. (Pérdida de 15kg)</div>
+                    <div class="font-black uppercase tracking-widest text-xs text-white">- Marc S. (Pérdida de 15kg)</div>
                 </div>
                 <!-- Reseña 2 -->
                 <div class="bg-zinc-900 p-8 border-b-4 border-red-600 shadow-sm text-left">
@@ -339,7 +354,7 @@
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                     <p class="text-zinc-300 italic mb-6">"Entrenar con JPUELLES es otro nivel de intensidad. He ganado más músculo en 4 meses que en los últimos 2 años solo. 🏆"</p>
-                    <div class="font-black uppercase tracking-widest text-sm text-white">- Ivan R. (Fase de Volumen)</div>
+                    <div class="font-black uppercase tracking-widest text-xs text-white">- Ivan R. (Fase de Volumen)</div>
                 </div>
                 <!-- Reseña 3 -->
                 <div class="bg-zinc-900 p-8 border-b-4 border-red-600 shadow-sm text-left">
@@ -347,21 +362,21 @@
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                     <p class="text-zinc-300 italic mb-6">"Transparencia total. No te miente, te dice lo que necesitas oír para progresar. La mejor inversión en mi salud. 💎✨"</p>
-                    <div class="font-black uppercase tracking-widest text-sm text-white">- Carlos M. (Recomposición)</div>
+                    <div class="font-black uppercase tracking-widest text-xs text-white">- Carlos M. (Recomposición)</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FORMULARIO DE CONTACTO -->
-    <section id="contacto-form" class="py-24 section-white">
-        <div class="max-w-4xl mx-auto px-6">
+    <section id="contacto-form" class="py-24 section-white overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-16">
-                <h2 class="text-5xl heading-black mb-4 uppercase">¿QUIERES <span class="text-red-600">RESULTADOS</span>?</h2>
-                <p class="text-zinc-500 font-bold uppercase tracking-widest">Rellena el formulario y evaluaré tu caso personalmente.</p>
+                <h2 class="text-4xl sm:text-5xl heading-black mb-4 uppercase">¿QUIERES <span class="text-red-600">RESULTADOS</span>?</h2>
+                <p class="text-zinc-500 font-bold uppercase tracking-widest text-sm">Rellena el formulario y evaluaré tu caso personalmente.</p>
             </div>
             
-            <form class="space-y-8 bg-zinc-50 p-8 md:p-12 border border-zinc-200 shadow-xl">
+            <form class="space-y-8 bg-zinc-50 p-6 md:p-12 border border-zinc-200 shadow-xl">
                 <div class="grid md:grid-cols-2 gap-8">
                     <div>
                         <label class="block text-xs font-black uppercase mb-2">Nombre</label>
@@ -376,15 +391,15 @@
                     <label class="block text-xs font-black uppercase mb-2">Tu mayor frustración actual</label>
                     <textarea class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition" rows="4" placeholder="¿Qué te impide progresar?"></textarea>
                 </div>
-                <button type="submit" class="btn-primary w-full py-6 text-xl">ENVIAR SOLICITUD DE ASESORÍA</button>
+                <button type="submit" class="btn-primary w-full py-5 md:py-6 text-lg md:text-xl">ENVIAR SOLICITUD DE ASESORÍA</button>
             </form>
         </div>
     </section>
 
     <!-- Sección Motivacional con Fondo Rojo -->
-    <section class="py-16 bg-red-600 text-center">
+    <section class="py-16 bg-red-600 text-center overflow-hidden">
         <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-3xl md:text-5xl font-black italic uppercase tracking-tighter leading-tight text-black">
+            <h2 class="text-2xl sm:text-3xl md:text-5xl font-black italic uppercase tracking-tighter leading-tight text-black">
                 TRABAJA EN SILENCIO,<br>
                 DEJA QUE TUS RESULTADOS HABLEN.
             </h2>
@@ -392,7 +407,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 bg-zinc-950 border-t border-white/5 text-center px-6 text-white">
+    <footer class="py-16 bg-zinc-950 border-t border-white/5 text-center px-6 text-white overflow-hidden">
         <img src="https://i.ibb.co/bgr9L1Qc/Untitled-design.jpg" alt="JPUELLES Avatar" class="footer-avatar">
         <div class="text-2xl font-black italic mb-2">
             <span class="text-white">JP</span><span class="text-red-600">UELLES</span>
@@ -401,9 +416,9 @@
             <span class="text-white">Shut up,</span> <span class="text-red-600">I’m working on my dreams</span>
         </div>
         <div class="flex justify-center space-x-8 mb-8">
-            <a href="https://www.instagram.com/anderbasurto?igsh=YWhldWY0bTUzN3d0" target="_blank" class="text-gray-500 hover:text-white transition"><i class="fab fa-instagram fa-lg"></i></a>
-            <a href="https://www.tiktok.com/@ander.basurto.wnb?_r=1&_t=ZN-937IkmIJdlG" target="_blank" class="text-gray-500 hover:text-white transition"><i class="fab fa-tiktok fa-lg"></i></a>
-            <a href="https://wa.me/34688849767" target="_blank" class="text-gray-500 hover:text-white transition"><i class="fab fa-whatsapp fa-lg"></i></a>
+            <a href="https://www.instagram.com/anderbasurto?igsh=YWhldWY0bTUzN3d0" target="_blank" class="text-gray-500 hover:text-white transition" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="https://www.tiktok.com/@ander.basurto.wnb?_r=1&_t=ZN-937IkmIJdlG" target="_blank" class="text-gray-500 hover:text-white transition" aria-label="TikTok"><i class="fab fa-tiktok fa-lg"></i></a>
+            <a href="https://wa.me/34688849767" target="_blank" class="text-gray-500 hover:text-white transition" aria-label="WhatsApp"><i class="fab fa-whatsapp fa-lg"></i></a>
         </div>
         <p class="text-[10px] text-gray-600 uppercase tracking-widest font-bold mt-1">
             © 2026 JPUELLES TEAM | NATURAL MEN'S PHYSIQUE WNBF
@@ -433,6 +448,13 @@
                     mobileMenu.classList.remove('active');
                 }
             });
+        });
+
+        // Asegurar que no haya scroll horizontal al cargar o redimensionar
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                mobileMenu.classList.remove('active');
+            }
         });
     </script>
 </body>
