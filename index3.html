@@ -9,7 +9,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <!-- Importación de Geist Sans y las fuentes previas -->
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Inter:wght@400;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
@@ -25,6 +26,12 @@
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
             overflow-x: hidden;
+        }
+
+        /* Fuente Geist para el título de la portada */
+        .font-geist {
+            font-family: 'Inter', sans-serif; /* Fallback si Geist no carga, pero forzamos el estilo sans-serif impactante */
+            font-weight: 900;
         }
 
         .heading-black {
@@ -120,20 +127,24 @@
             display: flex;
         }
 
-        /* Estilos Portada Impacto */
-        .text-stroke-red {
-            -webkit-text-stroke: 1px #800000;
-        }
-        
-        .tight-tracking {
-            letter-spacing: -0.07em;
-        }
-
-        .front-page {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop');
+        /* Estilos específicos para la nueva Portada */
+        .portada-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .text-stroke-red {
+            -webkit-text-stroke: 1px #ff0000;
+        }
+
+        .tracking-tight-custom {
+            letter-spacing: -0.07em;
         }
     </style>
 </head>
@@ -141,14 +152,14 @@
 
     <!-- MENÚ SUPERIOR -->
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-zinc-200">
-        <div class="max-w-77xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="index.html" class="text-2xl font-black italic tracking-tighter uppercase">
                 <span class="text-red-600">JP</span><span class="text-black">UELLES</span>
             </a>
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex gap-8 text-xs font-black uppercase tracking-widest items-center">
-                <a href="#" class="nav-link text-red-600">Home</a>
+                <a href="index.html" class="nav-link text-red-600">Home</a>
                 <a href="#servicios" class="nav-link">Servicios</a>
                 <a href="#team" class="nav-link">Team</a>
                 <a href="#contacto" class="nav-link">Contacto</a>
@@ -163,7 +174,7 @@
         
         <!-- Mobile Menu List -->
         <div id="mobile-menu" class="flex-col bg-white border-b border-zinc-200 p-6 gap-4 md:hidden font-bold uppercase text-sm">
-            <a href="#">Home</a>
+            <a href="index.html">Home</a>
             <a href="#servicios">Servicios</a>
             <a href="#team">Team</a>
             <a href="#contacto">Contacto</a>
@@ -171,37 +182,37 @@
         </div>
     </nav>
 
-    <!-- NUEVA PORTADA IMPACTO -->
-    <section class="front-page relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 w-full">
+    <!-- NUEVA PORTADA DE IMPACTO -->
+    <section class="portada-hero relative px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto w-full pt-20">
             <div class="max-w-4xl">
-                <h1 class="text-5xl md:text-8xl font-black text-red-600 leading-[0.9] mb-4 tight-tracking text-stroke-red uppercase">
-                    TE HAN MENTIDO <br> CON LAS RUTINAS <br> CLÁSICAS
+                <h1 class="font-geist text-5xl md:text-8xl text-red-600 leading-[0.9] tracking-tight-custom mb-6 uppercase drop-shadow-2xl text-stroke-red">
+                    TE HAN MENTIDO <br>CON LAS RUTINAS <br>CLÁSICAS
                 </h1>
                 
-                <div class="flex flex-col md:flex-row md:items-end gap-2 mb-10">
-                    <p class="text-lg md:text-2xl text-white font-bold leading-tight uppercase">
+                <div class="flex flex-col md:flex-row md:items-end gap-2 md:gap-4 mb-10">
+                    <h2 class="text-white text-4xl md:text-6xl font-black uppercase tracking-tighter">
+                        ¿NO PROGRESAS?
+                    </h2>
+                    <p class="text-white text-lg md:text-2xl font-light italic leading-tight max-w-lg">
                         Si Arnold no entrenaba como un atleta natural, ¿por qué lo haces tú?
                     </p>
-                    <span class="text-4xl md:text-6xl text-white font-black tight-tracking uppercase">
-                        ¿NO PROGRESAS?
-                    </span>
                 </div>
 
-                <a href="#construye-fisico" class="inline-block bg-white text-black px-12 py-5 text-xl font-black uppercase tracking-tighter hover:bg-red-600 hover:text-white transition-all transform hover:scale-105">
+                <a href="#original-hero" class="inline-block bg-white text-black font-black text-2xl px-10 py-5 hover:bg-red-600 hover:text-white transition-all transform hover:scale-105 uppercase tracking-tighter shadow-[0_0_20px_rgba(255,255,255,0.3)]">
                     ¿POR QUÉ?
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- ANTIGUO HERO (AHORA PRIMERA SECCIÓN) -->
-    <header id="construye-fisico" class="relative min-h-screen flex items-center pt-20 section-white">
+    <!-- HERO SECTION ORIGINAL (Ahora es la segunda sección) -->
+    <header id="original-hero" class="relative min-h-screen flex items-center pt-20">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div class="z-10">
-                <h2 class="text-6xl md:text-8xl heading-black leading-none mb-6">
+                <h1 class="text-6xl md:text-8xl heading-black leading-none mb-6">
                     CONSTRUYE <br> <span class="text-red-600">TU FÍSICO</span>
-                </h2>
+                </h1>
                 <p class="text-xl md:text-2xl text-zinc-600 mb-10 font-medium">
                     Gana músculo, pierde grasa. <br>
                     <span class="text-zinc-400">Ciencia aplicada al culturismo natural.</span>
@@ -221,17 +232,17 @@
     </header>
 
     <!-- ATLETA NATURAL WNBF -->
-    <section id="servicios" class="py-16 section-white text-center">
+    <section class="py-16 section-white text-center">
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-4xl md:text-6xl heading-black mb-10 text-black">
                 ATLETA NATURAL <span class="text-red-600">WNBF</span>
             </h2>
-             <img src="WNBF-Spain.png" alt="WNBF Spain" class="mx-auto max-w-full h-auto object-contain" style="max-height: 250px;">
+            <img src="WNBF-Spain.png" alt="WNBF Spain" class="mx-auto max-w-full h-auto object-contain" style="max-height: 250px;">
         </div>
     </section>
 
     <!-- SECCIONES DE VALOR -->
-    <section class="py-24 section-white">
+    <section id="servicios" class="py-24 section-white">
         <!-- Sección 1 -->
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center mb-32">
             <div class="image-container">
@@ -367,14 +378,14 @@
     </section>
 
     <!-- FORMULARIO DE CONTACTO -->
-    <section id="contacto" class="py-24 section-white">
+    <section id="contacto-form" class="py-24 section-white">
         <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-5xl heading-black mb-4 uppercase">¿QUIERES <span class="text-red-600">RESULTADOS</span>?</h2>
                 <p class="text-zinc-500 font-bold uppercase tracking-widest">Rellena el formulario y evaluaré tu caso personalmente.</p>
             </div>
             
-            <form id="contacto-form" class="space-y-8 bg-zinc-50 p-8 md:p-12 border border-zinc-200 shadow-xl">
+            <form class="space-y-8 bg-zinc-50 p-8 md:p-12 border border-zinc-200 shadow-xl">
                 <div class="grid md:grid-cols-2 gap-8">
                     <div>
                         <label class="block text-xs font-black uppercase mb-2">Nombre</label>
@@ -405,7 +416,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 bg-zinc-950 border-t border-white/5 text-center px-6 text-white">
+    <footer id="contacto" class="py-16 bg-zinc-950 border-t border-white/5 text-center px-6 text-white">
         <img src="https://i.ibb.co/bgr9L1Qc/Untitled-design.jpg" alt="JPUELLES Avatar" class="footer-avatar">
         <div class="text-2xl font-black italic mb-2">
             <span class="text-white">JP</span><span class="text-red-600">UELLES</span>
@@ -439,10 +450,7 @@
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
-                if (targetId === '#' || targetId === '') {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    return;
-                }
+                if (targetId === '#') return;
                 const target = document.querySelector(targetId);
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
