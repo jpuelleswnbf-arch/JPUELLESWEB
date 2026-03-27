@@ -120,22 +120,20 @@
             display: flex;
         }
 
-        /* Estilos Portada Impactante */
-        .hero-portada {
+        /* Estilos Portada Impacto */
+        .text-stroke-red {
+            -webkit-text-stroke: 1px #800000;
+        }
+        
+        .tight-tracking {
+            letter-spacing: -0.07em;
+        }
+
+        .front-page {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            filter: grayscale(100%);
-        }
-
-        .text-stroke-red {
-            -webkit-text-stroke: 1px #800000;
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
-        }
-
-        .tight-tracking {
-            letter-spacing: -0.07em;
         }
     </style>
 </head>
@@ -143,14 +141,14 @@
 
     <!-- MENÚ SUPERIOR -->
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-zinc-200">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div class="max-w-77xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="index.html" class="text-2xl font-black italic tracking-tighter uppercase">
-                <span class="text-red-600">JP</span>UELLES
+                <span class="text-red-600">JP</span><span class="text-black">UELLES</span>
             </a>
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex gap-8 text-xs font-black uppercase tracking-widest items-center">
-                <a href="index.html" class="nav-link text-red-600">Home</a>
+                <a href="#" class="nav-link text-red-600">Home</a>
                 <a href="#servicios" class="nav-link">Servicios</a>
                 <a href="#team" class="nav-link">Team</a>
                 <a href="#contacto" class="nav-link">Contacto</a>
@@ -165,7 +163,7 @@
         
         <!-- Mobile Menu List -->
         <div id="mobile-menu" class="flex-col bg-white border-b border-zinc-200 p-6 gap-4 md:hidden font-bold uppercase text-sm">
-            <a href="index.html">Home</a>
+            <a href="#">Home</a>
             <a href="#servicios">Servicios</a>
             <a href="#team">Team</a>
             <a href="#contacto">Contacto</a>
@@ -173,30 +171,32 @@
         </div>
     </nav>
 
-    <!-- NUEVA PORTADA IMPACTANTE -->
-    <section class="relative min-h-screen flex items-center hero-portada pt-20 px-6">
-        <div class="max-w-7xl mx-auto w-full">
+    <!-- NUEVA PORTADA IMPACTO -->
+    <section class="front-page relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full">
             <div class="max-w-4xl">
-                <h1 class="text-5xl md:text-8xl font-black text-red-600 leading-[0.9] mb-4 text-stroke-red tight-tracking uppercase">
+                <h1 class="text-5xl md:text-8xl font-black text-red-600 leading-[0.9] mb-4 tight-tracking text-stroke-red uppercase">
                     TE HAN MENTIDO <br> CON LAS RUTINAS <br> CLÁSICAS
                 </h1>
-                <div class="flex flex-col md:flex-row items-start md:items-end gap-4 mb-8">
-                    <h2 class="text-4xl md:text-6xl font-black text-white uppercase tight-tracking">
-                        ¿NO PROGRESAS?
-                    </h2>
-                    <p class="text-lg md:text-xl text-white font-medium max-w-md leading-tight pb-1">
+                
+                <div class="flex flex-col md:flex-row md:items-end gap-2 mb-10">
+                    <p class="text-lg md:text-2xl text-white font-bold leading-tight uppercase">
                         Si Arnold no entrenaba como un atleta natural, ¿por qué lo haces tú?
                     </p>
+                    <span class="text-4xl md:text-6xl text-white font-black tight-tracking uppercase">
+                        ¿NO PROGRESAS?
+                    </span>
                 </div>
-                <a href="#main-hero" class="inline-block bg-white text-black font-black px-10 py-5 text-xl uppercase hover:bg-red-600 hover:text-white transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+
+                <a href="#construye-fisico" class="inline-block bg-white text-black px-12 py-5 text-xl font-black uppercase tracking-tighter hover:bg-red-600 hover:text-white transition-all transform hover:scale-105">
                     ¿POR QUÉ?
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- HERO SECTION (Ahora primera sección después de portada) -->
-    <header id="main-hero" class="relative min-h-screen flex items-center pt-20">
+    <!-- ANTIGUO HERO (AHORA PRIMERA SECCIÓN) -->
+    <header id="construye-fisico" class="relative min-h-screen flex items-center pt-20 section-white">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div class="z-10">
                 <h2 class="text-6xl md:text-8xl heading-black leading-none mb-6">
@@ -221,17 +221,17 @@
     </header>
 
     <!-- ATLETA NATURAL WNBF -->
-    <section class="py-16 section-white text-center">
+    <section id="servicios" class="py-16 section-white text-center">
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-4xl md:text-6xl heading-black mb-10 text-black">
                 ATLETA NATURAL <span class="text-red-600">WNBF</span>
             </h2>
-            <img src="WNBF-Spain.png" alt="WNBF Spain" class="mx-auto max-w-full h-auto object-contain" style="max-height: 250px;">
+            <img src="https://i.ibb.co/C3Ym8MvF/WNBF-Spain.png" alt="WNBF Spain" class="mx-auto max-w-full h-auto object-contain" style="max-height: 250px;">
         </div>
     </section>
 
     <!-- SECCIONES DE VALOR -->
-    <section id="servicios" class="py-24 section-white">
+    <section class="py-24 section-white">
         <!-- Sección 1 -->
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center mb-32">
             <div class="image-container">
@@ -287,6 +287,7 @@
             </p>
             <div class="text-5xl text-white font-black mb-12 uppercase italic">J. Puelles</div>
             
+            <!-- Fotos Grandes debajo de J. Puelles -->
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="image-container h-[500px]">
                     <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2adfcd?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover grayscale" alt="Atleta JPUELLES 1">
@@ -332,11 +333,12 @@
         </div>
     </section>
 
-    <!-- RESULTADOS Y RESEÑAS -->
+    <!-- RESULTADOS Y RESEÑAS - FONDO NEGRO -->
     <section class="py-24 section-dark">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <h2 class="text-5xl heading-black mb-16 underline decoration-red-600 underline-offset-8">RESULTADOS REALES</h2>
             <div class="grid md:grid-cols-3 gap-8">
+                <!-- Reseña 1 -->
                 <div class="bg-zinc-900 p-8 border-b-4 border-red-600 shadow-sm text-left">
                     <div class="flex text-red-600 mb-4">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -344,6 +346,7 @@
                     <p class="text-zinc-300 italic mb-6">"El cambio no solo fue físico, fue mental. La nutrición flexible me permitió salir a cenar y seguir perdiendo grasa. ¡Increíble! 💪🔥"</p>
                     <div class="font-black uppercase tracking-widest text-sm text-white">- Marc S. (Pérdida de 15kg)</div>
                 </div>
+                <!-- Reseña 2 -->
                 <div class="bg-zinc-900 p-8 border-b-4 border-red-600 shadow-sm text-left">
                     <div class="flex text-red-600 mb-4">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -351,6 +354,7 @@
                     <p class="text-zinc-300 italic mb-6">"Entrenar con JPUELLES es otro nivel de intensidad. He ganado más músculo en 4 meses que en los últimos 2 años solo. 🏆"</p>
                     <div class="font-black uppercase tracking-widest text-sm text-white">- Ivan R. (Fase de Volumen)</div>
                 </div>
+                <!-- Reseña 3 -->
                 <div class="bg-zinc-900 p-8 border-b-4 border-red-600 shadow-sm text-left">
                     <div class="flex text-red-600 mb-4">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -364,13 +368,13 @@
 
     <!-- FORMULARIO DE CONTACTO -->
     <section id="contacto" class="py-24 section-white">
-        <div id="contacto-form" class="max-w-4xl mx-auto px-6">
+        <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-5xl heading-black mb-4 uppercase">¿QUIERES <span class="text-red-600">RESULTADOS</span>?</h2>
                 <p class="text-zinc-500 font-bold uppercase tracking-widest">Rellena el formulario y evaluaré tu caso personalmente.</p>
             </div>
             
-            <form class="space-y-8 bg-zinc-50 p-8 md:p-12 border border-zinc-200 shadow-xl">
+            <form id="contacto-form" class="space-y-8 bg-zinc-50 p-8 md:p-12 border border-zinc-200 shadow-xl">
                 <div class="grid md:grid-cols-2 gap-8">
                     <div>
                         <label class="block text-xs font-black uppercase mb-2">Nombre</label>
@@ -390,7 +394,7 @@
         </div>
     </section>
 
-    <!-- Sección Motivacional -->
+    <!-- Sección Motivacional con Fondo Rojo -->
     <section class="py-16 bg-red-600 text-center">
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-3xl md:text-5xl font-black italic uppercase tracking-tighter leading-tight text-black">
@@ -435,7 +439,10 @@
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+                if (targetId === '#' || targetId === '') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
                 const target = document.querySelector(targetId);
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
