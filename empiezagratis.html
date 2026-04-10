@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO EXTREMO Y METAETIQUETAS -->
+    <title>Calculadora Metabólica y Plan Gratuito | JPUELLES TEAM</title>
+    <meta name="description" content="Calcula tus calorías exactas y obtén tu estrategia personalizada para ganar masa muscular o perder grasa. Herramienta 100% gratuita del JPUELLES TEAM.">
+    <meta name="keywords" content="calculadora macros, calculadora tdee, empezar gym gratis, plan culturismo natural, jpueles team, calcular calorias online">
+    <meta name="author" content="JPUELLES TEAM">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://tudominio.com/empiezagratis">
+    
+    <!-- Favicon JP Rojo -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='sans-serif' font-weight='900' fill='%23ff0000'>JP</text></svg>">
+    
+    <!-- Open Graph para Redes Sociales -->
+    <meta property="og:site_name" content="JPUELLES TEAM">
+    <meta property="og:title" content="Calculadora Metabólica | Empieza Gratis">
+    <meta property="og:description" content="Averigua cuántas calorías necesitas exactamente y traza tu plan de acción para alcanzar tu mejor versión física.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tudominio.com/empiezagratis">
+    <!-- Imagen OG genérica de fitness/calculadora -->
+    <meta property="og:image" content="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop">
+
+    <!-- Schema Markup (SoftwareApplication / WebApplication) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calculadora Metabólica JPUELLES TEAM",
+      "url": "https://tudominio.com/empiezagratis",
+      "description": "Calculadora TDEE y BMR para estimar el requerimiento calórico diario para atletas naturales.",
+      "applicationCategory": "HealthAndFitnessApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "JPUELLES TEAM"
+      }
+    }
+    </script>
+
+    <!-- Dependencias y Fuentes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root {
+            --jp-red: #ff0000;
+            --jp-black: #0a0a0a;
+            --jp-white: #ffffff;
+            --jp-gray: #f4f4f5;
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: var(--jp-white);
+            color: var(--jp-black);
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .heading-black {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+        }
+
+        .graffiti-font {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--jp-red);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .footer-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--jp-red);
+            margin: 0 auto 1.5rem;
+        }
+
+        #mobile-menu {
+            display: none;
+        }
+
+        #mobile-menu.active {
+            display: flex;
+        }
+
+        /* Ocultar input number arrows */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        /* Animaciones para el formulario */
+        .step-container {
+            display: none;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .step-container.active {
+            display: flex;
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .step-container.animating-out {
+            display: flex;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .option-btn {
+            transition: all 0.2s ease;
+        }
+        .option-btn.selected {
+            border-color: var(--jp-red);
+            background-color: #fef2f2; /* red-50 */
+            color: var(--jp-red);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- MENÚ SUPERIOR -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-zinc-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-black italic tracking-tighter uppercase">
+                <span class="text-red-600">JP</span><span class="text-black">UELLES</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-8 text-xs font-black uppercase tracking-widest items-center">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="servicios.html" class="nav-link">Servicios</a>
+                <a href="team.html" class="nav-link">Team</a>
+                <a href="contacto.html" class="nav-link">Contacto</a>
+                <a href="empiezagratis.html" class="px-4 py-2 bg-black text-white border-2 border-black hover:bg-red-600 hover:border-red-600 transition">Empieza Gratis</a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden" id="menu-btn" aria-label="Abrir menú">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu List -->
+        <div id="mobile-menu" class="flex-col bg-white border-b border-zinc-200 p-6 gap-4 md:hidden font-bold uppercase text-sm">
+            <a href="index.html">Home</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="team.html">Team</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="empiezagratis.html" class="text-red-600">Empieza Gratis</a>
+        </div>
+    </nav>
+
+    <!-- MAIN APP CONTENT -->
+    <main class="pt-20 flex-grow bg-zinc-50 py-12 px-6">
+        <div class="max-w-3xl mx-auto w-full">
+            
+            <!-- Barra de Progreso -->
+            <div class="mb-12">
+                <div class="flex justify-between mb-4" id="progress-labels">
+                    <div class="text-[10px] sm:text-xs font-black uppercase tracking-widest transition-colors text-red-600" data-step="0">Compromiso</div>
+                    <div class="text-[10px] sm:text-xs font-black uppercase tracking-widest transition-colors text-zinc-300 hidden sm:block" data-step="1">Objetivo</div>
+                    <div class="text-[10px] sm:text-xs font-black uppercase tracking-widest transition-colors text-zinc-300 hidden sm:block" data-step="2">Nivel</div>
+                    <div class="text-[10px] sm:text-xs font-black uppercase tracking-widest transition-colors text-zinc-300 hidden sm:block" data-step="3">Días</div>
+                    <div class="text-[10px] sm:text-xs font-black uppercase tracking-widest transition-colors text-zinc-300" data-step="4">Calculadora</div>
+                    <div class="text-[10px] sm:text-xs font-black uppercase tracking-widest transition-colors text-zinc-300" data-step="5">Tu Plan</div>
+                </div>
+                <div class="h-2 bg-zinc-200 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-red-600 transition-all duration-500 ease-out" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Contenedor Principal Formularios -->
+            <div class="bg-white border border-zinc-200 shadow-2xl p-8 md:p-12 relative overflow-hidden min-h-[500px] flex flex-col justify-center">
+                
+                <!-- PASO 0: AVISO COMPROMISO -->
+                <div class="step-container flex-col text-center active" id="step-0">
+                    <i data-lucide="shield-alert" class="w-20 h-20 text-red-600 mx-auto mb-8"></i>
+                    <h2 class="text-4xl heading-black mb-6">AVISO DE COMPROMISO <span class="text-red-600">ABSOLUTO</span></h2>
+                    <p class="text-zinc-600 text-lg mb-10 font-medium leading-relaxed">
+                        Este plan servirá como toma de contacto del primer mes. Para que tenga efecto, el compromiso debe ser total. Si no estás dispuesto a dar el 100%, cierra esta página ahora.
+                    </p>
+                    <button onclick="nextStep()" class="bg-red-600 text-white px-12 py-5 font-black uppercase tracking-widest text-sm hover:bg-black transition-all mx-auto">
+                        ACEPTO EL RETO
+                    </button>
+                </div>
+
+                <!-- PASO 1: OBJETIVO -->
+                <div class="step-container flex-col w-full" id="step-1">
+                    <h2 class="text-3xl heading-black mb-8 text-center">¿CUÁL ES TU <span class="text-red-600">OBJETIVO</span>?</h2>
+                    <div class="grid gap-4 w-full">
+                        <button class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="objective" data-value="Ganar masa muscular">
+                            <span>Ganar masa muscular</span><i data-lucide="check-circle-2" class="hidden"></i>
+                        </button>
+                        <button class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="objective" data-value="Pérdida de grasa">
+                            <span>Pérdida de grasa</span><i data-lucide="check-circle-2" class="hidden"></i>
+                        </button>
+                        <button class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="objective" data-value="Recomposición corporal">
+                            <span>Recomposición corporal</span><i data-lucide="check-circle-2" class="hidden"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PASO 2: NIVEL -->
+                <div class="step-container flex-col w-full" id="step-2">
+                    <h2 class="text-3xl heading-black mb-8 text-center">TU <span class="text-red-600">NIVEL ACTUAL</span></h2>
+                    <div class="grid gap-4 w-full">
+                        <button class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="level" data-value="Nunca he pisado un gimnasio">
+                            <span>Nunca he pisado un gimnasio</span><i data-lucide="check-circle-2" class="hidden"></i>
+                        </button>
+                        <button class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="level" data-value="Nivel Medio">
+                            <span>Nivel Medio</span><i data-lucide="check-circle-2" class="hidden"></i>
+                        </button>
+                        <button class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="level" data-value="Nivel Alto">
+                            <span>Nivel Alto</span><i data-lucide="check-circle-2" class="hidden"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PASO 3: DÍAS -->
+                <div class="step-container flex-col w-full" id="step-3">
+                    <h2 class="text-3xl heading-black mb-8 text-center">DÍAS <span class="text-red-600">DISPONIBLES</span></h2>
+                    <div class="grid grid-cols-2 gap-4 w-full">
+                        <button class="option-btn p-10 border-2 text-center font-black uppercase tracking-widest text-2xl border-zinc-200 hover:border-black" data-type="days" data-value="2">2</button>
+                        <button class="option-btn p-10 border-2 text-center font-black uppercase tracking-widest text-2xl border-zinc-200 hover:border-black" data-type="days" data-value="3">3</button>
+                        <button class="option-btn p-10 border-2 text-center font-black uppercase tracking-widest text-2xl border-zinc-200 hover:border-black" data-type="days" data-value="4">4</button>
+                        <button class="option-btn p-10 border-2 text-center font-black uppercase tracking-widest text-2xl border-zinc-200 hover:border-black" data-type="days" data-value="5">5</button>
+                    </div>
+                </div>
+
+                <!-- PASO 4: CALCULADORA -->
+                <div class="step-container flex-col w-full" id="step-4">
+                    <h2 class="text-3xl heading-black mb-8 text-center">CALCULADORA <span class="text-red-600">METABÓLICA</span></h2>
+                    <div class="space-y-6 w-full">
+                        <div class="flex gap-4">
+                            <button type="button" class="gender-btn flex-1 py-4 font-black uppercase text-xs border-2 bg-black text-white border-black" data-gender="male">
+                                Hombre
+                            </button>
+                            <button type="button" class="gender-btn flex-1 py-4 font-black uppercase text-xs border-2 border-zinc-200 text-black hover:border-black" data-gender="female">
+                                Mujer
+                            </button>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div>
+                                <label class="block text-[10px] font-black uppercase mb-2 text-zinc-500">Peso (kg)</label>
+                                <input type="number" id="input-weight" class="calc-input w-full border-b-2 border-zinc-200 py-2 outline-none focus:border-red-600 font-black text-xl bg-transparent" placeholder="00">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black uppercase mb-2 text-zinc-500">Altura (cm)</label>
+                                <input type="number" id="input-height" class="calc-input w-full border-b-2 border-zinc-200 py-2 outline-none focus:border-red-600 font-black text-xl bg-transparent" placeholder="000">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black uppercase mb-2 text-zinc-500">Edad</label>
+                                <input type="number" id="input-age" class="calc-input w-full border-b-2 border-zinc-200 py-2 outline-none focus:border-red-600 font-black text-xl bg-transparent" placeholder="00">
+                            </div>
+                        </div>
+                        <button id="btn-calcular" disabled onclick="calculateAndNext()" class="w-full bg-red-600 text-white py-5 font-black uppercase tracking-widest text-sm hover:bg-black transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-red-600 mt-4">
+                            CALCULAR RESULTADO
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PASO 5: RESULTADO -->
+                <div class="step-container flex-col w-full text-center" id="step-5">
+                    <h2 class="text-4xl heading-black mb-8">TU ESTRATEGIA <span class="text-red-600">PERSONALIZADA</span></h2>
+                    
+                    <div class="bg-zinc-50 p-8 border border-zinc-200 mb-10 text-left">
+                        <div class="grid grid-cols-2 gap-8 mb-8">
+                            <div>
+                                <p class="text-[10px] font-black uppercase text-zinc-400 mb-1">Objetivo</p>
+                                <p class="font-black uppercase text-sm" id="res-objective">-</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-black uppercase text-zinc-400 mb-1">Nivel</p>
+                                <p class="font-black uppercase text-sm" id="res-level">-</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-black uppercase text-zinc-400 mb-1">Frecuencia</p>
+                                <p class="font-black uppercase text-sm"><span id="res-days">-</span> Días / Semana</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-black uppercase text-zinc-400 mb-1">Calorías Objetivo</p>
+                                <p class="font-black uppercase text-2xl text-red-600 italic"><span id="res-calories">0</span> kcal</p>
+                            </div>
+                        </div>
+                        <div class="border-t border-zinc-200 pt-6">
+                            <p class="text-xs font-bold text-zinc-500 uppercase italic">Este es tu punto de partida. Para obtener el plan de entrenamiento detallado y la lista de la compra, pulsa el botón inferior.</p>
+                        </div>
+                    </div>
+
+                    <a href="contacto.html" class="block w-full bg-red-600 text-white py-6 text-xl font-black uppercase border-2 border-red-600 hover:bg-black hover:border-black transition-all shadow-xl">
+                        OBTENER MI PLAN COMPLETO
+                    </a>
+                </div>
+
+                <!-- Botón Atrás (Flotante en el bottom del card) -->
+                <div id="back-btn-container" class="mt-8 flex justify-between hidden">
+                    <button onclick="prevStep()" class="flex items-center gap-2 text-xs font-black uppercase text-zinc-400 hover:text-black transition-colors">
+                        <i data-lucide="chevron-left" class="w-4 h-4"></i> Atrás
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SECCIÓN MOTIVACIONAL GLOBAL -->
+    <section class="py-16 bg-red-600 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-black italic uppercase tracking-tighter leading-tight text-black">
+                TRABAJA EN SILENCIO,<br>
+                DEJA QUE TUS RESULTADOS HABLEN.
+            </h2>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-16 bg-zinc-950 border-t border-white/5 text-center px-6 text-white">
+        <img src="https://i.ibb.co/bgr9L1Qc/Untitled-design.jpg" alt="JPUELLES Avatar" class="footer-avatar">
+        <div class="text-2xl font-black italic mb-2">
+            <span class="text-white">JP</span><span class="text-red-600">UELLES</span>
+        </div>
+        <div class="graffiti-font text-sm mb-8">
+            <span class="text-white">Shut up,</span> <span class="text-red-600">I’m working on my dreams</span>
+        </div>
+        <div class="flex justify-center space-x-8 mb-8">
+            <a href="https://www.instagram.com/anderbasurto?igsh=YWhldWY0bTUzN3d0" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="https://www.tiktok.com/@ander.basurto.wnb?_r=1&_t=ZN-937IkmIJdlG" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition" aria-label="TikTok"><i class="fab fa-tiktok fa-lg"></i></a>
+            <a href="https://wa.me/34688849767" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition" aria-label="WhatsApp"><i class="fab fa-whatsapp fa-lg"></i></a>
+        </div>
+        <p class="text-[10px] text-gray-600 uppercase tracking-widest font-bold mt-1">
+            © 2026 JPUELLES TEAM | NATURAL MEN'S PHYSIQUE WNBF
+        </p>
+    </footer>
+
+    <!-- LOGICA FORMULARIO Y CALCULADORA (Vanilla JS) -->
+    <script>
+        // Inicializar iconos
+        lucide.createIcons();
+
+        // Menú Móvil
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Variables de estado del Formulario
+        let currentStep = 0;
+        const totalSteps = 6; // 0 al 5
+        const formData = {
+            objective: "",
+            level: "",
+            days: "",
+            gender: "male",
+            weight: "",
+            height: "",
+            age: ""
+        };
+
+        const progressBar = document.getElementById('progress-bar');
+        const progressLabels = document.querySelectorAll('#progress-labels div');
+        const backBtnContainer = document.getElementById('back-btn-container');
+
+        // Mapeo de botones de opciones
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const type = this.getAttribute('data-type');
+                const value = this.getAttribute('data-value');
+                
+                // Remover clase 'selected' de los hermanos
+                const siblings = this.parentElement.querySelectorAll('.option-btn');
+                siblings.forEach(s => {
+                    s.classList.remove('selected');
+                    const icon = s.querySelector('i');
+                    if(icon) icon.classList.add('hidden');
+                });
+
+                // Añadir clase 'selected' al clickeado
+                this.classList.add('selected');
+                const icon = this.querySelector('i');
+                if(icon) icon.classList.remove('hidden');
+
+                // Guardar en formData
+                formData[type] = value;
+
+                // Pequeño delay para que el usuario vea la selección antes de pasar
+                setTimeout(() => {
+                    nextStep();
+                }, 300);
+            });
+        });
+
+        // Botones de Género
+        document.querySelectorAll('.gender-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Resetear todos
+                document.querySelectorAll('.gender-btn').forEach(b => {
+                    b.classList.remove('bg-black', 'text-white', 'border-black');
+                    b.classList.add('border-zinc-200', 'text-black');
+                });
+                // Marcar seleccionado
+                this.classList.remove('border-zinc-200', 'text-black');
+                this.classList.add('bg-black', 'text-white', 'border-black');
+                formData.gender = this.getAttribute('data-gender');
+            });
+        });
+
+        // Validar inputs de calculadora
+        const calcInputs = document.querySelectorAll('.calc-input');
+        const btnCalcular = document.getElementById('btn-calcular');
+
+        calcInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                formData.weight = document.getElementById('input-weight').value;
+                formData.height = document.getElementById('input-height').value;
+                formData.age = document.getElementById('input-age').value;
+
+                if (formData.weight && formData.height && formData.age) {
+                    btnCalcular.disabled = false;
+                } else {
+                    btnCalcular.disabled = true;
+                }
+            });
+        });
+
+        function calculateCalories() {
+            const w = parseFloat(formData.weight);
+            const h = parseFloat(formData.height);
+            const a = parseFloat(formData.age);
+            if (!w || !h || !a) return 0;
+
+            // Mifflin-St Jeor Equation
+            let bmr = (10 * w) + (6.25 * h) - (5 * a);
+            bmr = formData.gender === "male" ? bmr + 5 : bmr - 161;
+
+            const activityFactors = {
+                "2": 1.2,
+                "3": 1.375,
+                "4": 1.55,
+                "5": 1.725
+            };
+            
+            // Factor por defecto si no eligió días
+            const factor = activityFactors[formData.days] || 1.2; 
+            let tdee = bmr * factor;
+
+            // Ajuste por objetivo
+            if (formData.objective === "Ganar masa muscular") tdee += 300;
+            if (formData.objective === "Pérdida de grasa") tdee -= 500;
+            // Recomposición se mantiene en mantenimiento o ligero déficit, lo dejamos igual
+
+            return Math.round(tdee);
+        }
+
+        function calculateAndNext() {
+            // Rellenar datos en la pantalla final antes de mostrarla
+            document.getElementById('res-objective').textContent = formData.objective || "No definido";
+            document.getElementById('res-level').textContent = formData.level || "No definido";
+            document.getElementById('res-days').textContent = formData.days || "X";
+            document.getElementById('res-calories').textContent = calculateCalories();
+            
+            nextStep();
+        }
+
+        // Navegación de pasos
+        function updateView() {
+            // Actualizar barra de progreso
+            const percentage = (currentStep / (totalSteps - 1)) * 100;
+            progressBar.style.width = `${percentage}%`;
+
+            // Colores de labels de progreso
+            progressLabels.forEach((label, index) => {
+                if (index <= currentStep) {
+                    label.classList.remove('text-zinc-300');
+                    label.classList.add('text-red-600');
+                } else {
+                    label.classList.remove('text-red-600');
+                    label.classList.add('text-zinc-300');
+                }
+            });
+
+            // Animación de los contenedores
+            const stepsDivs = document.querySelectorAll('.step-container');
+            stepsDivs.forEach((step, index) => {
+                if (index === currentStep) {
+                    step.classList.remove('animating-out');
+                    step.classList.add('active');
+                } else if (step.classList.contains('active')) {
+                    // Animación de salida
+                    step.classList.add('animating-out');
+                    step.classList.remove('active');
+                    setTimeout(() => {
+                        step.classList.remove('animating-out');
+                    }, 400); // duracion de la transicion CSS
+                } else {
+                    step.classList.remove('active', 'animating-out');
+                }
+            });
+
+            // Botón Atrás
+            if (currentStep > 0 && currentStep < (totalSteps - 1)) {
+                backBtnContainer.classList.remove('hidden');
+            } else {
+                backBtnContainer.classList.add('hidden');
+            }
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps - 1) {
+                currentStep++;
+                updateView();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateView();
+            }
+        }
+    </script>
+</body>
+</html>
