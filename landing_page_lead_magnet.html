@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPUELLES | Construye tu Físico - Culturismo Natural WNBF</title>
+    <meta name="description" content="Especialista en Culturismo Natural WNBF. Gana músculo y pierde grasa con nutrición flexible y entrenamiento basado en evidencia. Únete al JPUELLES TEAM.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" type="image/png" href="https://jpuellesweb.vercel.app/LOGO%20JPUELLES.png">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        graffiti: ['Permanent Marker', 'cursive'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#050505',        /* Negro absoluto profundo */
+                            card: '#111111',      /* Antracita mate para tarjetas */
+                            red: '#ff0000',       /* Rojo de competición */
+                            redHover: '#cc0000',
+                            gold: '#ffcc33',      /* Dorado WNBF */
+                            border: '#222222'     /* Separador sutil */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --jp-red: #ff0000;
+            --jp-black: #0a0a0a;
+            --jp-white: #ffffff;
+            --jp-gray: #f4f4f5;
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden; /* Evita desbordamiento lateral en cualquier dispositivo */
+        }
+
+        body {
+            background-color: var(--jp-white);
+            color: var(--jp-black);
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .heading-black {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+        }
+
+        /* Estilo específico para la portada de impacto */
+        .portada-titulo {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.07em;
+            word-spacing: 0.15em; /* AUMENTO DE ESPACIO ENTRE PALABRAS */
+            line-height: 0.85;
+            color: var(--jp-red) !important; /* FORZAMOS ROJO */
+            font-style: italic;
+            position: relative;
+            z-index: 20;
+        }
+
+        .graffiti-font {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        .btn-primary {
+            background-color: var(--jp-red);
+            color: white;
+            transition: all 0.3s ease;
+            font-weight: 900;
+            text-transform: uppercase;
+            border: 2px solid var(--jp-red);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--jp-black);
+            border-color: var(--jp-black);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--jp-black);
+            color: var(--jp-black);
+            transition: all 0.3s ease;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .btn-outline:hover {
+            background: var(--jp-black);
+            color: white;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--jp-red);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .section-white { background-color: var(--jp-white); }
+        .section-gray { background-color: var(--jp-gray); }
+        .section-dark { background-color: var(--jp-black); color: white; }
+
+        .image-container {
+            overflow: hidden;
+            border-bottom: 8px solid var(--jp-red);
+        }
+
+        .image-container img {
+            transition: transform 0.5s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .footer-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--jp-red);
+            margin: 0 auto 1.5rem;
+        }
+
+        #mobile-menu {
+            display: none;
+        }
+
+        #mobile-menu.active {
+            display: flex;
+        }
+
+        /* Hero Portada Background */
+        .hero-portada {
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* AUMENTADA LA OPACIDAD DE 0.3 a 0.5 PARA HACERLA MÁS OSCURA */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+            url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%); /* Solo afecta a la imagen de fondo */
+            z-index: 1;
+        }
+
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Animación sutil para el botón */
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
+        .animate-pulse-custom {
+            animation: pulse-red 2s infinite;
+        }
+
+        /* 3D Book Cover styling */
+        .book-perspective {
+            perspective: 1200px;
+        }
+        .book-container {
+            transform-style: preserve-3d;
+            transform: rotateY(-18deg) rotateX(6deg);
+            transition: transform 0.5s cubic-bezier(0.1, 0.8, 0.3, 1);
+        }
+        .book-container:hover {
+            transform: rotateY(-6deg) rotateX(2deg) scale(1.02);
+        }
+        .book-spine {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 16px;
+            background: linear-gradient(90deg, #0c0c0c 0%, #1a1a1a 50%, #0c0c0c 100%);
+            transform: rotateY(-90deg);
+            transform-origin: left;
+            border-radius: 4px 0 0 4px;
+        }
+        .book-pages {
+            position: absolute;
+            right: -6px;
+            top: 6px;
+            bottom: 6px;
+            width: 8px;
+            background: repeating-linear-gradient(90deg, #f4f4f5 0px, #e4e4e7 1px, #f4f4f5 2px);
+            transform: rotateY(90deg);
+            transform-origin: right;
+            border-radius: 0 2px 2px 0;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body class="selection:bg-red-600 selection:text-white">
+
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-zinc-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-2xl font-black italic tracking-tighter uppercase">
+                <span class="text-red-600">JP</span><span class="text-black">UELLES</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-8 text-xs font-black uppercase tracking-widest items-center">
+                <a href="#" class="nav-link text-red-600">Home</a>
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#team" class="nav-link">Team</a>
+                <a href="#guia-gratis" class="nav-link text-red-600">Guía Gratis</a>
+                <a href="#contacto" class="nav-link">Contacto</a>
+                <a href="#guia-gratis" class="px-4 py-2 bg-red-600 text-white hover:bg-black transition">Empieza Gratis</a>
+                <img src="https://jpuellesweb.vercel.app/LOGO%20JPUELLES.png" alt="Logo JPUELLES" class="h-8 w-auto logo-img" onerror="this.style.display='none'">
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden" id="menu-btn">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu List -->
+        <div id="mobile-menu" class="flex-col bg-white border-b border-zinc-200 p-6 gap-4 md:hidden font-bold uppercase text-sm">
+            <a href="#" class="text-red-600">Home</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#team">Team</a>
+            <a href="#guia-gratis" class="text-red-600">Guía Gratis</a>
+            <a href="#contacto">Contacto</a>
+            <a href="#guia-gratis" class="px-4 py-2 bg-red-600 text-white hover:bg-black transition text-center mt-2">Empieza Gratis</a>
+            <img src="https://jpuellesweb.vercel.app/LOGO%20JPUELLES.png" alt="Logo JPUELLES" class="h-12 w-auto mx-auto mt-4 logo-img" onerror="this.style.display='none'">
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center hero-portada pt-20 overflow-hidden">
+        <div class="hero-bg-image"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 w-full text-left hero-content-wrapper">
+            <div class="max-w-6xl">
+                <h1 class="text-6xl md:text-8xl lg:text-[110px] portada-titulo mb-4">
+                    TE HAN MENTIDO CON LAS RUTINAS CLÁSICAS
+                </h1>
+                
+                <h2 class="text-3xl md:text-5xl font-black text-white uppercase mb-8">
+                    ¿NO PROGRESAS?
+                </h2>
+                
+                <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+                    <a href="#guia-gratis" class="bg-white text-black px-10 py-5 font-black uppercase text-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-2xl animate-pulse-custom">
+                        DESCUBRE EL POR QUÉ
+                    </a>
+                    <p class="text-white text-xl md:text-2xl font-bold max-w-xl leading-tight opacity-95">
+                        Si Arnold no entrenaba como un atleta natural, ¿Por qué tú entrenas como él?
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Flecha decorativa hacia abajo -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+            <a href="#original-hero" class="text-white opacity-50"><i data-lucide="chevron-down" size="48"></i></a>
+        </div>
+    </section>
+
+    <header id="original-hero" class="relative min-h-screen flex items-center pt-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="z-10">
+                <h2 class="text-6xl md:text-8xl heading-black leading-none mb-6">
+                    CONSTRUYE <br> <span class="text-red-600">TU FÍSICO</span>
+                </h2>
+                <p class="text-xl md:text-2xl text-zinc-600 mb-10 font-medium">
+                    Gana músculo, pierde grasa. <br>
+                    <span class="text-zinc-400">Ciencia aplicada al culturismo natural.</span>
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contacto" class="btn-primary px-8 py-4">Unirme al Team</a>
+                    <a href="#guia-gratis" class="btn-outline px-8 py-4">Guía Gratis</a>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute -top-10 -right-10 w-64 h-64 bg-red-50 rounded-full z-0"></div>
+                <div class="image-container relative z-10 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop" alt="Culturista entrenando" class="w-full grayscale hover:grayscale-0 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16 section-white text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl md:text-6xl heading-black mb-10 text-black">
+                ATLETA NATURAL <span class="text-red-600">WNBF</span>
+            </h2>
+            <img src="https://jpuellesweb.vercel.app/WNBF-Spain.png" alt="WNBF Spain" class="mx-auto max-w-full h-auto object-contain" style="max-height: 250px;" onerror="this.src='https://placehold.co/400x200/black/red?text=WNBF+SPAIN'">
+        </div>
+    </section>
+
+    <section id="servicios" class="py-24 section-white">
+        <!-- Sección 1 -->
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center mb-32">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2080&auto=format&fit=crop" alt="Nutrición Flexible">
+            </div>
+            <div>
+                <h2 class="text-4xl md:text-5xl heading-black mb-8 leading-tight">Experto en pérdida de grasa <br><span class="text-red-600">con nutrición flexible</span></h2>
+                <div class="space-y-6 text-zinc-600 text-lg leading-relaxed">
+                    <p>La pérdida de grasa no tiene por qué ser un calvario de restricciones insostenibles. Mi metodología se basa en la <strong>Nutrición Flexible</strong>, un sistema donde los datos mandan pero tus preferencias cuentan.</p>
+                    <p>Aprenderás a integrar los alimentos que te gustan mientras garantizamos el déficit calórico necesario y el aporte óptimo de proteína para preservar tu masa muscular. No es una dieta temporal, es un aprendizaje metabólico para toda la vida.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección 2 -->
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center mb-32">
+            <div class="md:order-2 image-container">
+                <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop" alt="Entrenamiento de Fuerza">
+            </div>
+            <div class="md:order-1 text-right md:text-left">
+                <h2 class="text-4xl md:text-5xl heading-black mb-8 leading-tight">Ponte fuerte <br><span class="text-red-600">sin perder el tiempo</span></h2>
+                <div class="space-y-6 text-zinc-600 text-lg leading-relaxed">
+                    <p>El gimnasio es una herramienta, no tu segunda casa. Optimizamos cada serie y cada repetición mediante la <strong>Sobrecarga Progresiva</strong> y la selección de ejercicios biomecánicamente eficientes.</p>
+                    <p>Mi objetivo es que cada minuto que pases bajo la barra tenga un retorno directo en hipertrofia y fuerza. Menos volumen basura, más intensidad real. Resultados de élite para gente con agendas reales.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección 3 -->
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2070&auto=format&fit=crop" alt="Transformación Física">
+            </div>
+            <div>
+                <h2 class="text-4xl md:text-5xl heading-black mb-8 leading-tight">Consigue el físico que quieres <br><span class="text-red-600">ALCANZA TU MEJOR VERSIÓN</span></h2>
+                <div class="space-y-6 text-zinc-600 text-lg leading-relaxed">
+                    <p>Un físico estético y funcional es el pilar de una vida de éxito. No solo transformamos tu espejo; transformamos tu confianza, tu disciplina y tu salud a largo plazo.</p>
+                    <p>A través de un seguimiento exhaustivo y ajustes semanales, te llevaré de la mano hasta alcanzar ese punto que siempre creíste imposible. El compromiso es mutuo: yo pongo el mapa, tú pones la voluntad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-32 section-dark">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <h2 class="text-5xl md:text-7xl heading-black mb-8 italic text-white">Esto es <span class="text-red-600">JPUELLES TEAM</span></h2>
+            <div class="inline-block px-4 py-2 bg-red-600 text-white font-black uppercase text-sm mb-8">
+                Culturista Natural WNBF | Competidor Men's Physique
+            </div>
+            <p class="text-xl text-zinc-300 leading-relaxed mb-10 max-w-4xl mx-auto italic">
+                Mi nombre es Jorge Puelles y mi objetivo es dar visión al culturismo natural, dar importancia a la salud y lanzar el mensaje de que cuando el trabajo es innegociable, los resultados llegan siempre. Represento la modalidad competitiva de la WNBF llevando al extremo mi pasión del culturismo natural. Bajo la estética de la categoría Men's Physique con una premisa innegociable: ESFUERZO Y DISCIPLINA, LA CIENCIA ES NUESTRA MEJOR ALIADA. En este equipo no vendemos humo ni atajos mágicos; vendemos resultados forjados en el estudio y el trabajo duro.
+            </p>
+            <div class="text-5xl text-white font-black mb-12 uppercase italic">J. Puelles</div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="image-container h-[500px]">
+                    <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500" alt="Atleta JPUELLES 1">
+                </div>
+                <div class="image-container h-[500px]">
+                    <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500" alt="Atleta JPUELLES 2">
+                </div>
+                <div class="image-container h-[500px]">
+                    <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition duration-500" alt="Atleta JPUELLES 3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 section-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl md:text-5xl heading-black mb-8">NUESTRO CAMINO: <br><span class="text-red-600">ÉTICA Y HIERRO</span></h2>
+                <div class="space-y-6 text-zinc-600 text-lg">
+                    <p>El culturismo natural no es solo un deporte; es una forma de vida. Nos oponemos frontalmente al uso de sustancias dopantes que desvirtúan el mérito y ponen en riesgo la salud.</p>
+                    <p>Creemos en el potencial ilimitado del cuerpo humano cuando se le somete a un estímulo correcto y una nutrición de precisión. Nuestro equipo es un refugio para aquellos atletas que quieren estar orgullosos de su progreso sin recurrir a agujas ni mentiras.</p>
+                </div>
+                <div class="mt-12 flex gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl heading-black text-red-600">100%</div>
+                        <div class="text-xs font-bold uppercase tracking-widest">Natural</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl heading-black text-red-600">WNBF</div>
+                        <div class="text-xs font-bold uppercase tracking-widest">Standard</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl heading-black text-red-600">ZERO</div>
+                        <div class="text-xs font-bold uppercase tracking-widest">Drogas</div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop" alt="Atleta Natural 1" class="rounded grayscale hover:grayscale-0 transition">
+                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2070&auto=format&fit=crop" alt="Atleta Natural 2" class="rounded mt-8 grayscale hover:grayscale-0 transition">
+            </div>
+        </div>
+    </section>
+
+    <section id="guia-gratis" class="py-24 section-gray border-t border-b border-zinc-200 relative overflow-hidden">
+        <div class="absolute inset-0 bg-red-600/[0.01] pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                
+                <!-- Columna Izquierda: Copywriting persuasivo y formulario -->
+                <div class="lg:col-span-7 space-y-8">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-black bg-red-100 border border-red-200 text-red-600 uppercase tracking-widest">
+                        <i class="fa-solid fa-lock-open text-[10px]"></i> RECURSO LIBRE DE SPAM
+                    </span>
+                    
+                    <h2 class="text-4xl md:text-6xl font-black uppercase italic leading-[0.95] tracking-tighter">
+                        EL MANUAL DEL <br><span class="text-red-600 font-sans">ATLETA NATURAL</span>
+                    </h2>
+                    
+                    <p class="text-zinc-700 text-base md:text-lg leading-relaxed">
+                        He condensado mis años de preparación para campeonatos nacionales y mi experiencia con decenas de clientes en una guía práctica en PDF de 5 pasos para acelerar tu desarrollo muscular de manera 100% natural.
+                    </p>
+                    
+                    <!-- Bullet points refinados y estilizados -->
+                    <ul class="space-y-5">
+                        <li class="flex items-start gap-4">
+                            <span class="w-6 h-6 rounded-full bg-red-600 text-white flex items-center justify-center mt-1 shrink-0 text-xs">
+                                <i class="fa-solid fa-dumbbell"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-base font-black uppercase tracking-tight text-zinc-900">Selección Biomecánica</h4>
+                                <p class="text-sm text-zinc-600">Cuáles son los mejores ejercicios para hombro y espalda dorsal.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="w-6 h-6 rounded-full bg-red-600 text-white flex items-center justify-center mt-1 shrink-0 text-xs">
+                                <i class="fa-solid fa-apple-whole"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-base font-black uppercase tracking-tight text-zinc-900">Nutrición Inteligente</h4>
+                                <p class="text-sm text-zinc-600">Cómo ajustar tu déficit sin perder un gramo de masa muscular magra.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="w-6 h-6 rounded-full bg-red-600 text-white flex items-center justify-center mt-1 shrink-0 text-xs">
+                                <i class="fa-solid fa-fire-flame-curved"></i>
+                            </span>
+                            <div>
+                                <h4 class="text-base font-black uppercase tracking-tight text-zinc-900">Intensidad Eficiente</h4>
+                                <p class="text-sm text-zinc-600">La diferencia real entre entrenar duro y entrenar inteligente (RIR/RPE).</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- Formulario con diseño estricto y alta fidelidad -->
+                    <div class="bg-white p-6 md:p-8 border border-zinc-200 shadow-xl rounded-xl">
+                        <form id="leadCaptureForm" onsubmit="handleLeadCapture(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label class="text-[10px] font-black uppercase tracking-widest text-zinc-500">Tu Nombre</label>
+                                    <input type="text" id="leadNameInput" required placeholder="Escribe tu nombre..." 
+                                        class="w-full px-4 py-3 border border-zinc-300 rounded-lg text-black bg-zinc-50 focus:border-red-600 focus:bg-white outline-none transition">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-[10px] font-black uppercase tracking-widest text-zinc-500">Tu Correo Electrónico</label>
+                                    <input type="email" id="leadEmailInput" required placeholder="tu@email.com" 
+                                        class="w-full px-4 py-3 border border-zinc-300 rounded-lg text-black bg-zinc-50 focus:border-red-600 focus:bg-white outline-none transition">
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="w-full btn-primary py-4 rounded-lg flex items-center justify-center gap-3 text-base shadow-lg animate-pulse-custom">
+                                <span>Descargar Guía en PDF Ahora</span>
+                                <i class="fa-solid fa-circle-down text-lg"></i>
+                            </button>
+                            
+                            <p class="text-center text-[10px] text-zinc-500 uppercase tracking-widest font-bold">
+                                Acceso instantáneo en tu bandeja de entrada sin coste alguno.
+                            </p>
+                        </form>
+
+                        <!-- Éxito de suscripción con enlace de descarga -->
+                        <div id="leadSuccessContainer" class="hidden text-center py-4 space-y-5">
+                            <div class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center mx-auto text-2xl shadow-lg">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <h3 class="text-2xl font-black uppercase tracking-tight text-zinc-900">¡ACCESO CONCEDIDO!</h3>
+                            <p class="text-zinc-600 text-sm max-w-md mx-auto">
+                                Te hemos enviado un correo de confirmación. Mientras tanto, puedes iniciar la descarga instantánea de tu manual en formato PDF aquí abajo.
+                            </p>
+                            <button onclick="triggerPdfDownload()" class="inline-flex items-center gap-2 px-8 py-4 bg-black hover:bg-red-600 text-white font-black uppercase text-sm tracking-wider rounded-lg transition-all shadow-md">
+                                <i class="fa-solid fa-file-pdf"></i>
+                                Descargar Manual PDF (8.4 MB)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Mockup 3D premium del manual de culturismo -->
+                <div class="lg:col-span-5 flex justify-center book-perspective py-10">
+                    <div class="book-container relative w-72 h-[430px] shadow-2xl">
+                        <!-- Lomo del libro -->
+                        <div class="book-spine"></div>
+                        <!-- Páginas de fondo -->
+                        <div class="book-pages"></div>
+                        
+                        <!-- Portada Principal Brutalista -->
+                        <div class="absolute inset-0 bg-zinc-950 border border-red-600/30 rounded-r-lg p-6 flex flex-col justify-between overflow-hidden">
+                            <!-- Efectos de luz/gradiente dentro del libro -->
+                            <div class="absolute top-0 right-0 w-36 h-36 bg-red-600/10 rounded-full blur-2xl pointer-events-none"></div>
+                            
+                            <!-- Header de la portada -->
+                            <div class="flex items-center justify-between border-b border-zinc-800 pb-3 z-10">
+                                <span class="text-[9px] font-black tracking-widest text-red-600">JPUELLES ATHLETICS</span>
+                                <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">REV. 2026</span>
+                            </div>
+
+                            <!-- Bloque del título -->
+                            <div class="my-auto z-10 py-6">
+                                <p class="text-[10px] font-black text-brand-gold uppercase tracking-widest mb-3 font-mono">
+                                    PROTOCOLO NATURAL DE ÉLITE
+                                </p>
+                                <h3 class="font-graffiti text-3xl md:text-4xl text-white leading-none tracking-wider mb-2">
+                                    EL SISTEMA <br><span class="text-red-600">ATLETA</span><br>NATURAL
+                                </h3>
+                                <p class="text-[11px] text-zinc-400 mt-5 leading-relaxed font-medium">
+                                    Construye masa muscular pura, domina la intensidad y optimiza tu biomecánica.
+                                </p>
+                            </div>
+
+                            <!-- Footer de la portada -->
+                            <div class="flex items-center justify-between border-t border-zinc-800 pt-4 z-10">
+                                <span class="text-[10px] text-zinc-400 uppercase tracking-widest font-black">MANUAL COMPLETO</span>
+                                <span class="text-[10px] text-red-600 font-mono font-black">EDICIÓN I</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 section-dark">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-5xl heading-black mb-16 underline decoration-red-600 underline-offset-8">RESULTADOS REALES</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Reseña 1 -->
+                <div class="bg-zinc-900 p-8 border-b-4 border-red-600 shadow-sm text-left">
+                    <div class="flex text-red-600 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-zinc-300 italic mb-6">"El cambio no solo fue físico, fue mental. La nutrición flexible me permitió salir a cenar y seguir perdiendo grasa. ¡Increíble! 💪🔥"</p>
+                    <div class="font-black uppercase tracking-widest text-sm text-white">- Marc S. (Pérdida de 15kg)</div>
+                </div>
+                <!-- Reseña 2 -->
+                <div class="bg-zinc-900 p-8 border-b-4 border-red-600 shadow-sm text-left">
+                    <div class="flex text-red-600 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-zinc-300 italic mb-6">"Entrenar con JPUELLES es otro nivel de intensidad. He ganado más músculo en 4 meses que en los últimos 2 años solo. 🏆"</p>
+                    <div class="font-black uppercase tracking-widest text-sm text-white">- Ivan R. (Fase de Volumen)</div>
+                </div>
+                <!-- Reseña 3 -->
+                <div class="bg-zinc-900 p-8 border-b-4 border-red-600 shadow-sm text-left">
+                    <div class="flex text-red-600 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-zinc-300 italic mb-6">"Transparencia total. No te miente, te dice lo que necesitas oír para progresar. La mejor inversión en mi salud. 💎✨"</p>
+                    <div class="font-black uppercase tracking-widest text-sm text-white">- Carlos M. (Recomposición)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-24 section-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl heading-black mb-4 uppercase">¿QUIERES <span class="text-red-600">RESULTADOS</span>?</h2>
+                <p class="text-zinc-500 font-bold uppercase tracking-widest">Rellena el formulario y evaluaré tu caso personalmente.</p>
+            </div>
+
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { document.getElementById('success-modal').classList.remove('hidden'); setTimeout(() => document.getElementById('success-modal').classList.remove('opacity-0'), 10); document.getElementById('contacto-form').reset(); submitted = false; }"></iframe>
+            
+            <form id="contacto-form" action="https://docs.google.com/forms/d/e/1FAIpQLSea7RLD451d_jV6d09Ud98l39-CyLbhkD-DfM6NstAU1igkwA/formResponse" method="POST" target="hidden_iframe" class="space-y-8 bg-zinc-50 p-8 md:p-12 border border-zinc-200 shadow-xl" onsubmit="return validateForm()">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <label class="block text-xs font-black uppercase mb-2">Nombre</label>
+                        <input type="text" name="entry.81777955" id="form-nombre" class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition" placeholder="Tu nombre..." required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-black uppercase mb-2">WhatsApp / Email</label>
+                        <input type="text" name="entry.1238646382" id="form-contacto" class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition" placeholder="Para contactarte..." required>
+                        <p id="contacto-error" class="text-red-600 text-xs mt-1 hidden font-bold">Por favor, introduce un email o número de teléfono válido.</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-black uppercase mb-2">Tu mayor frustración actual</label>
+                    <textarea name="entry.555950925" id="form-frustracion" class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition" rows="4" placeholder="¿Qué te impide progresar?" required></textarea>
+                </div>
+                <div class="flex items-start gap-2">
+                    <input type="checkbox" id="privacy-check" required class="mt-1 cursor-pointer accent-red-600">
+                    <label for="privacy-check" class="text-[10px] text-zinc-500 font-bold cursor-pointer leading-tight">Los datos recogidos en el formulario son unicamente para contactar con el cliente sobre los servicios interesados</label>
+                </div>
+                <button type="submit" class="btn-primary w-full py-6 text-xl">ENVIAR SOLICITUD DE ASESORÍA</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Sección Motivacional con Fondo Rojo -->
+    <section class="py-16 bg-red-600 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-black italic uppercase tracking-tighter leading-tight text-black">
+                TRABAJA EN SILENCIO,<br>
+                DEJA QUE TUS RESULTADOS HABLEN.
+            </h2>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-zinc-950 border-t border-white/5 text-center px-6 text-white">
+        <img src="https://i.ibb.co/bgr9L1Qc/Untitled-design.jpg" alt="JPUELLES Avatar" class="footer-avatar">
+        <div class="text-2xl font-black italic mb-2">
+            <span class="text-white">JP</span><span class="text-red-600">UELLES</span>
+        </div>
+        <div class="graffiti-font text-sm mb-8">
+            <span class="text-white">Shut up,</span> <span class="text-red-600">I’m working on my dreams</span>
+        </div>
+        
+        <div class="flex justify-center space-x-8 mb-8">
+            <a href="https://www.instagram.com/jpuelles.wnbf?igsh=M3dwdndoMzIzMHg1&utm_source=qr" target="_blank" class="text-gray-500 hover:text-white transition">
+                <i class="fab fa-instagram fa-lg"></i>
+            </a>
+            <a href="https://www.tiktok.com/@jpuelles.wnbf?_r=1&_t=ZN-96Dkhfmz5Lr" target="_blank" class="text-gray-500 hover:text-white transition">
+                <i class="fab fa-tiktok fa-lg"></i>
+            </a>
+            <a href="https://wa.me/34618207730?text=Hola,%20cu%C3%A9ntame%20mas%20sobre%20JPuelles%20TEAM" target="_blank" class="text-gray-500 hover:text-white transition">
+                <i class="fab fa-whatsapp fa-lg"></i>
+            </a>
+        </div>
+        
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-4 text-[10px] text-gray-600 uppercase tracking-widest font-bold">
+            <a href="https://jpuellesweb.vercel.app/avisolegal" class="hover:text-white transition">Aviso Legal</a>
+            <a href="https://jpuellesweb.vercel.app/politicadeprivacidad" class="hover:text-white transition">Política de Privacidad</a>
+            <a href="https://jpuellesweb.vercel.app/politicadecookies" class="hover:text-white transition">Política de cookies</a>
+        </div>
+        <p class="text-[10px] text-gray-600 uppercase tracking-widest font-bold mt-1">
+            © 2026 JPUELLES TEAM | NATURAL MEN'S PHYSIQUE WNBF
+        </p>
+    </footer>
+
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-[200] flex flex-col gap-3 max-w-sm w-full"></div>
+
+    <!-- HTML DEL MODAL DE ÉXITO (FORMULARIO) -->
+    <div id="success-modal" class="fixed inset-0 z-[110] hidden bg-black/90 flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="bg-white p-8 md:p-12 text-center relative max-w-md w-[90%] border-t-4 border-red-600 shadow-2xl">
+            <button onclick="closeSuccessModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-red-600 transition">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="w-16 h-16 bg-red-600 text-white flex items-center justify-center rounded-full mx-auto mb-6">
+                <i data-lucide="check" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-3xl font-black uppercase tracking-[-0.05em] mb-4 text-black">¡RECIBIDO!</h3>
+            <p class="text-zinc-600 font-medium text-lg">En breve me pondré en contacto contigo.</p>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu on clicking any link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Dynamic Elegant Toast Notifications (No using alerts)
+        function triggerToast(title, message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'p-4 rounded-xl border border-red-600/30 bg-zinc-950/95 shadow-2xl flex gap-3 items-start animate-[slideIn_0.3s_ease-out] z-[210]';
+            toast.innerHTML = `
+                <div class="shrink-0 text-red-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                    <h4 class="text-sm font-black text-white uppercase tracking-tight">${title}</h4>
+                    <p class="text-xs text-zinc-400 mt-1">${message}</p>
+                </div>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'transition-all', 'duration-500');
+                setTimeout(() => toast.remove(), 500);
+            }, 5000);
+        }
+
+        // Handle high conversion lead capture form
+        function handleLeadCapture(event) {
+            event.preventDefault();
+            const name = document.getElementById('leadNameInput').value.trim();
+            const email = document.getElementById('leadEmailInput').value.trim();
+            
+            if (name && email) {
+                document.getElementById('leadCaptureForm').classList.add('hidden');
+                document.getElementById('leadSuccessContainer').classList.remove('hidden');
+                triggerToast("Registro Completado", `¡Felicidades ${name}! Tu manual del Atleta Natural ya está disponible.`);
+            }
+        }
+
+        // Simulated direct file download
+        function triggerPdfDownload() {
+            triggerToast("Compilando PDF", "Iniciando la descarga directa del protocolo de élite. Revisa tus archivos.");
+            
+            // Simular el inicio de descarga real con un blob ficticio
+            const textContent = "JPUELLES ATHLETICS - PROTOCOLO NATURAL DE ELITE";
+            const blob = new Blob([textContent], { type: 'text/plain' });
+            const tempUrl = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = tempUrl;
+            link.setAttribute('download', 'Manual_Del_Atleta_Natural_JPUELLES.pdf');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // LÓGICA DE FORMULARIO DE GOOGLE
+        let submitted = false;
+
+        function validateForm() {
+            const contactInput = document.getElementById('form-contacto').value.trim();
+            const errorMsg = document.getElementById('contacto-error');
+
+            // Regex básico para Email y Teléfono
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$|^[0-9\+\s\-]{7,15}$/;
+
+            if (!emailRegex.test(contactInput) && !phoneRegex.test(contactInput)) {
+                errorMsg.classList.remove('hidden');
+                return false;
+            }
+
+            errorMsg.classList.add('hidden');
+            submitted = true;
+            return true;
+        }
+
+        function closeSuccessModal() {
+            const successModal = document.getElementById('success-modal');
+            successModal.classList.add('opacity-0');
+            setTimeout(() => successModal.classList.add('hidden'), 300);
+        }
+
+        // Soporte de navegación suave universal para todos los hipervínculos internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+                const target = document.querySelector(targetId);
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
