@@ -11,7 +11,6 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://tudominio.com/contacto">
     
-    <!-- FAVICON ACTUALIZADO -->
     <link rel="icon" type="image/png" href="LOGO JPUELLES.png">
     
     <meta property="og:site_name" content="JPUELLES TEAM">
@@ -147,11 +146,9 @@
                 <a href="team.html" class="nav-link text-black hover:text-red-600">Team</a>
                 <a href="contacto.html" class="nav-link text-red-600">Contacto</a>
                 <a href="empiezagratis.html" class="px-4 py-2 bg-red-600 text-white hover:bg-black transition">Empieza Gratis</a>
-                <!-- LOGO AL LADO DE EMPIEZA GRATIS -->
                 <img src="LOGO JPUELLES.png" alt="Logo JPUELLES" class="h-8 w-auto">
             </div>
 
-            <!-- Mobile Toggle -->
             <button class="md:hidden" id="menu-btn" aria-label="Abrir menú">
                 <i data-lucide="menu"></i>
             </button>
@@ -162,9 +159,7 @@
             <a href="servicios.html">Servicios</a>
             <a href="team.html">Team</a>
             <a href="contacto.html" class="text-red-600">Contacto</a>
-            <!-- BOTÓN RESPONSIVE MEJORADO -->
             <a href="empiezagratis.html" class="px-4 py-2 bg-red-600 text-white font-black uppercase text-center rounded-sm">Empieza Gratis</a>
-            <!-- LOGO DEBAJO Y CENTRADO -->
             <img src="LOGO JPUELLES.png" alt="Logo JPUELLES" class="h-12 w-auto mx-auto mt-2">
         </div>
     </nav>
@@ -186,7 +181,6 @@
 
         <section class="py-16 md:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-6">
-                <!-- GRID RESPONSIVE MEJORADO -->
                 <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
                     
                     <div>
@@ -195,39 +189,48 @@
                             <p class="text-zinc-500 font-bold uppercase tracking-widest text-sm">Evaluaremos tu caso y te contactaremos en menos de 24h</p>
                         </div>
                         
-                        <form action="#" method="POST" class="space-y-6 md:space-y-8 bg-zinc-50 p-6 md:p-12 border border-zinc-200 shadow-2xl">
+                        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { document.getElementById('success-modal').classList.remove('hidden'); setTimeout(() => document.getElementById('success-modal').classList.remove('opacity-0'), 10); document.getElementById('contacto-form').reset(); submitted = false; }"></iframe>
+
+                        <form id="contacto-form" action="https://docs.google.com/forms/d/e/1FAIpQLSc2Pojk7Hgqi-gABO1voLQAtl4snOjSKayKLCmS9DSzA07m4g/formResponse" method="POST" target="hidden_iframe" onsubmit="return validateForm()" class="space-y-6 md:space-y-8 bg-zinc-50 p-6 md:p-12 border border-zinc-200 shadow-2xl">
                             <div class="grid md:grid-cols-2 gap-6 md:gap-8">
                                 <div>
                                     <label class="block text-xs font-black uppercase mb-2">Nombre Completo</label>
-                                    <input type="text" required class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition font-medium" placeholder="Ej: Juan Pérez">
+                                    <input type="text" name="entry.938944317" id="form-nombre" required class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition font-medium" placeholder="Ej: Juan Pérez">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-black uppercase mb-2">WhatsApp</label>
-                                    <input type="tel" required class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition font-medium" placeholder="+34 600 000 000">
+                                    <input type="tel" name="entry.100615756" id="form-whatsapp" required class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition font-medium" placeholder="+34 600 000 000">
                                 </div>
                             </div>
                             
                             <div>
                                 <label class="block text-xs font-black uppercase mb-2">Email</label>
-                                <input type="email" required class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition font-medium" placeholder="tu@email.com">
+                                <input type="email" name="entry.526026187" id="form-email" required class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition font-medium" placeholder="tu@email.com">
                             </div>
                             
                             <div>
                                 <label class="block text-xs font-black uppercase mb-2">Objetivo Principal</label>
-                                <select required class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition font-medium">
+                                <select name="entry.803657085" id="form-objetivo" required class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition font-medium">
                                     <option value="" disabled selected>Selecciona una opción...</option>
-                                    <option value="perdida_grasa">Pérdida de Grasa</option>
-                                    <option value="ganancia_muscular">Ganancia de Masa Muscular</option>
-                                    <option value="recomposicion">Recomposición Corporal</option>
-                                    <option value="competicion">Preparación para Competición</option>
+                                    <option value="Pérdida de Grasa">Pérdida de Grasa</option>
+                                    <option value="Ganancia de Masa Muscular">Ganancia de Masa Muscular</option>
+                                    <option value="Recomposición Corporal">Recomposición Corporal</option>
+                                    <option value="Preparación para Competición">Preparación para Competición</option>
                                 </select>
                             </div>
                             
                             <div>
                                 <label class="block text-xs font-black uppercase mb-2">Cuéntanos sobre tu situación actual</label>
-                                <textarea required class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition font-medium" rows="4" placeholder="¿Cuánto tiempo llevas entrenando? ¿Cuál es tu mayor reto?"></textarea>
+                                <textarea name="entry.1402653839" id="form-situacion" required class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition font-medium" rows="4" placeholder="¿Cuánto tiempo llevas entrenando? ¿Cuál es tu mayor reto?"></textarea>
                             </div>
                             
+                            <div class="flex items-start gap-2 py-1">
+                                <input type="checkbox" id="privacy-check" required class="mt-1 cursor-pointer accent-red-600">
+                                <label for="privacy-check" class="text-[10px] text-zinc-500 font-bold cursor-pointer leading-tight">
+                                    Los datos recogidos en el formulario son unicamente para contactar con el cliente sobre los servicios interesados
+                                </label>
+                            </div>
+
                             <button type="submit" class="bg-red-600 text-white w-full py-5 md:py-6 text-lg md:text-xl font-black uppercase border-2 border-red-600 hover:bg-black hover:border-black transition-all shadow-lg">
                                 ENVIAR SOLICITUD AHORA
                             </button>
@@ -235,15 +238,12 @@
                     </div>
 
                     <div class="flex flex-col justify-center">
-                        <!-- SIDEBAR RESPONSIVE -->
                         <div class="space-y-12 flex flex-col items-center lg:items-start text-center lg:text-left">
                             
                             <div class="w-full flex flex-col items-center lg:items-start">
-                                <!-- LOGO SOBRE CANALES DIRECTOS -->
                                 <img src="LOGO JPUELLES.png" alt="Logo JPUELLES" class="h-20 md:h-24 w-auto mb-6 mx-auto lg:mx-0">
                                 <h3 class="text-2xl heading-black mb-6 border-l-4 border-red-600 pl-4 w-fit">CANALES DIRECTOS</h3>
                                 <div class="space-y-6 w-full">
-                                    <!-- WHATSAPP ACTUALIZADO -->
                                     <a href="https://wa.me/34618207730?text=Hola,%20cu%C3%A9ntame%20mas%20sobre%20JPuelles%20TEAM" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center lg:justify-start gap-6 group cursor-pointer block">
                                         <div class="w-12 h-12 bg-red-600 text-white flex items-center justify-center rounded-sm group-hover:bg-black transition-colors shrink-0">
                                             <i data-lucide="message-circle" class="w-6 h-6"></i>
@@ -253,7 +253,6 @@
                                             <p class="text-lg md:text-xl font-black uppercase text-black">+34 618 207 730</p>
                                         </div>
                                     </a>
-                                    <!-- EMAIL ACTUALIZADO -->
                                     <a href="mailto:Jpuelles.wnbf@gmail.com" class="flex items-center justify-center lg:justify-start gap-6 group cursor-pointer block">
                                         <div class="w-12 h-12 bg-red-600 text-white flex items-center justify-center rounded-sm group-hover:bg-black transition-colors shrink-0">
                                             <i data-lucide="mail" class="w-6 h-6"></i>
@@ -320,7 +319,6 @@
             <a href="https://wa.me/34618207730?text=Hola,%20cu%C3%A9ntame%20mas%20sobre%20JPuelles%20TEAM" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition" aria-label="WhatsApp"><i class="fab fa-whatsapp fa-lg"></i></a>
         </div>
         
-        <!-- LINKS LEGALES -->
         <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-4 text-[10px] text-gray-600 uppercase tracking-widest font-bold">
             <a href="https://jpuellesweb.vercel.app/avisolegal" class="hover:text-white transition">Aviso Legal</a>
             <a href="https://jpuellesweb.vercel.app/politicadeprivacidad" class="hover:text-white transition">Política de Privacidad</a>
@@ -332,6 +330,21 @@
         </p>
     </footer>
 
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-[200] flex flex-col gap-3 max-w-sm w-full"></div>
+
+    <div id="success-modal" class="fixed inset-0 z-[110] hidden bg-black/90 flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="bg-white p-8 md:p-12 text-center relative max-w-md w-[90%] border-t-4 border-red-600 shadow-2xl">
+            <button onclick="closeSuccessModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-red-600 transition">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="w-16 h-16 bg-red-600 text-white flex items-center justify-center rounded-full mx-auto mb-6">
+                <i data-lucide="check" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-3xl font-black uppercase tracking-[-0.05em] mb-4 text-black">¡RECIBIDO!</h3>
+            <p class="text-zinc-600 font-medium text-lg">En breve me pondré en contacto contigo para tu asesoría de élite.</p>
+        </div>
+    </div>
+
     <script>
         lucide.createIcons();
 
@@ -341,6 +354,82 @@
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
         });
+
+        // LÓGICA DE FORMULARIO DE GOOGLE (ASESORÍA) CON VALIDACIONES Y TOASTS
+        let submitted = false;
+
+        function validateForm() {
+            const nombre = document.getElementById('form-nombre').value.trim();
+            const whatsapp = document.getElementById('form-whatsapp').value.trim();
+            const email = document.getElementById('form-email').value.trim();
+            const objetivo = document.getElementById('form-objetivo').value;
+            const situacion = document.getElementById('form-situacion').value.trim();
+            const privacyCheck = document.getElementById('privacy-check').checked;
+
+            // Regex estructurados para validación precisa
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$|^[0-9\+\s\-]{7,15}$/;
+
+            if (!nombre) {
+                triggerToast("Nombre requerido", "Por favor, introduce tu nombre completo.");
+                return false;
+            }
+
+            if (!phoneRegex.test(whatsapp)) {
+                triggerToast("WhatsApp incorrecto", "Por favor, introduce un número de teléfono válido.");
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                triggerToast("Email incorrecto", "Por favor, introduce un correo electrónico válido.");
+                return false;
+            }
+
+            if (!objetivo) {
+                triggerToast("Objetivo requerido", "Por favor, selecciona tu objetivo principal.");
+                return false;
+            }
+
+            if (!situacion) {
+                triggerToast("Situación requerida", "Por favor, cuéntanos un poco sobre tu caso.");
+                return false;
+            }
+
+            if (!privacyCheck) {
+                triggerToast("Consentimiento Requerido", "Debes aceptar los términos de uso y privacidad.");
+                return false;
+            }
+
+            submitted = true;
+            return true;
+        }
+
+        function closeSuccessModal() {
+            const successModal = document.getElementById('success-modal');
+            successModal.classList.add('opacity-0');
+            setTimeout(() => successModal.classList.add('hidden'), 300);
+        }
+
+        // Toasts dinámicos personalizados del archivo de referencia
+        function triggerToast(title, message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'p-4 rounded-xl border border-red-600/30 bg-zinc-950/95 shadow-2xl flex gap-3 items-start animate-[slideIn_0.3s_ease-out] z-[210]';
+            toast.innerHTML = `
+                <div class="shrink-0 text-red-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                    <h4 class="text-sm font-black text-white uppercase tracking-tight">${title}</h4>
+                    <p class="text-xs text-zinc-400 mt-1">${message}</p>
+                </div>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'transition-all', 'duration-500');
+                setTimeout(() => toast.remove(), 500);
+            }, 5000);
+        }
     </script>
 </body>
 </html>
