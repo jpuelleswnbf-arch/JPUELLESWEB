@@ -21,7 +21,6 @@
     <meta property="og:description" content="Averigua cuántas calorías necesitas exactamente y traza tu plan de acción para alcanzar tu mejor versión física.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tudominio.com/empiezagratis">
-    <!-- Imagen OG genérica de fitness/calculadora -->
     <meta property="og:image" content="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop">
 
     <!-- Schema Markup (SoftwareApplication / WebApplication) -->
@@ -222,136 +221,163 @@
                 </div>
             </div>
 
-            <!-- Contenedor Principal Formularios -->
-            <div class="bg-white border border-zinc-200 shadow-2xl p-8 md:p-12 relative overflow-hidden min-h-[500px] flex flex-col justify-center">
+            <!-- Iframe oculto para el envío asíncrono a Google Forms -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { showSuccessModal(); }"></iframe>
+
+            <!-- Contenedor Principal Formularios integrado dentro de un elemento formal de envío -->
+            <form id="quiz-form" action="https://docs.google.com/forms/d/e/1FAIpQLScW-Q-y1Ss_yoFMfSSunCZTbh7zhp9Y8mgbHHDwTRNgCxFEIw/formResponse" method="POST" target="hidden_iframe" onsubmit="return handleQuizSubmit(event)">
                 
-                <!-- PASO 0: AVISO COMPROMISO -->
-                <div class="step-container flex-col text-center active" id="step-0">
-                    <i data-lucide="shield-alert" class="w-20 h-20 text-red-600 mx-auto mb-8"></i>
-                    <h2 class="text-4xl heading-black mb-6">AVISO DE COMPROMISO <span class="text-red-600">ABSOLUTO</span></h2>
-                    <p class="text-zinc-600 text-lg mb-10 font-medium leading-relaxed">
-                        Este plan servirá como toma de contacto del primer mes. Para que tenga efecto, el compromiso debe ser total. Si no estás dispuesto a dar el 100%, cierra esta página ahora.
-                    </p>
-                    <button onclick="nextStep()" class="bg-red-600 text-white px-12 py-5 font-black uppercase tracking-widest text-sm hover:bg-black transition-all mx-auto">
-                        ACEPTO EL RETO
-                    </button>
-                </div>
+                <!-- Inputs ocultos que mapean al backend de Google Forms -->
+                <input type="hidden" name="entry.85114063" id="entry-objective">
+                <input type="hidden" name="entry.1306336877" id="entry-level">
+                <input type="hidden" name="entry.1629063135" id="entry-days">
+                <input type="hidden" name="entry.684357507" id="entry-calc-data">
+                <input type="hidden" name="entry.2041578727" id="entry-email">
 
-                <!-- PASO 1: OBJETIVO -->
-                <div class="step-container flex-col w-full" id="step-1">
-                    <h2 class="text-3xl heading-black mb-8 text-center">¿CUÁL ES TU <span class="text-red-600">OBJETIVO</span>?</h2>
-                    <div class="grid gap-4 w-full">
-                        <button class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="objective" data-value="Ganar masa muscular">
-                            <span>Ganar masa muscular</span><i data-lucide="check-circle-2" class="hidden"></i>
-                        </button>
-                        <button class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="objective" data-value="Pérdida de grasa">
-                            <span>Pérdida de grasa</span><i data-lucide="check-circle-2" class="hidden"></i>
-                        </button>
-                        <button class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="objective" data-value="Recomposición corporal">
-                            <span>Recomposición corporal</span><i data-lucide="check-circle-2" class="hidden"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- PASO 2: NIVEL -->
-                <div class="step-container flex-col w-full" id="step-2">
-                    <h2 class="text-3xl heading-black mb-8 text-center">TU <span class="text-red-600">NIVEL ACTUAL</span></h2>
-                    <div class="grid gap-4 w-full">
-                        <button class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="level" data-value="Nunca he pisado un gimnasio">
-                            <span>Nunca he pisado un gimnasio</span><i data-lucide="check-circle-2" class="hidden"></i>
-                        </button>
-                        <button class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="level" data-value="Nivel Medio">
-                            <span>Nivel Medio</span><i data-lucide="check-circle-2" class="hidden"></i>
-                        </button>
-                        <button class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="level" data-value="Nivel Alto">
-                            <span>Nivel Alto</span><i data-lucide="check-circle-2" class="hidden"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- PASO 3: DÍAS -->
-                <div class="step-container flex-col w-full" id="step-3">
-                    <h2 class="text-3xl heading-black mb-8 text-center">DÍAS <span class="text-red-600">DISPONIBLES</span></h2>
-                    <div class="grid grid-cols-2 gap-4 w-full">
-                        <button class="option-btn p-10 border-2 text-center font-black uppercase tracking-widest text-2xl border-zinc-200 hover:border-black" data-type="days" data-value="2">2</button>
-                        <button class="option-btn p-10 border-2 text-center font-black uppercase tracking-widest text-2xl border-zinc-200 hover:border-black" data-type="days" data-value="3">3</button>
-                        <button class="option-btn p-10 border-2 text-center font-black uppercase tracking-widest text-2xl border-zinc-200 hover:border-black" data-type="days" data-value="4">4</button>
-                        <button class="option-btn p-10 border-2 text-center font-black uppercase tracking-widest text-2xl border-zinc-200 hover:border-black" data-type="days" data-value="5">5</button>
-                    </div>
-                </div>
-
-                <!-- PASO 4: CALCULADORA -->
-                <div class="step-container flex-col w-full" id="step-4">
-                    <h2 class="text-3xl heading-black mb-8 text-center">CALCULADORA <span class="text-red-600">METABÓLICA</span></h2>
-                    <div class="space-y-6 w-full">
-                        <div class="flex gap-4">
-                            <button type="button" class="gender-btn flex-1 py-4 font-black uppercase text-xs border-2 bg-black text-white border-black" data-gender="male">
-                                Hombre
-                            </button>
-                            <button type="button" class="gender-btn flex-1 py-4 font-black uppercase text-xs border-2 border-zinc-200 text-black hover:border-black" data-gender="female">
-                                Mujer
-                            </button>
-                        </div>
-                        <div class="grid md:grid-cols-3 gap-6">
-                            <div>
-                                <label class="block text-[10px] font-black uppercase mb-2 text-zinc-500">Peso (kg)</label>
-                                <input type="number" id="input-weight" class="calc-input w-full border-b-2 border-zinc-200 py-2 outline-none focus:border-red-600 font-black text-xl bg-transparent" placeholder="00">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-black uppercase mb-2 text-zinc-500">Altura (cm)</label>
-                                <input type="number" id="input-height" class="calc-input w-full border-b-2 border-zinc-200 py-2 outline-none focus:border-red-600 font-black text-xl bg-transparent" placeholder="000">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-black uppercase mb-2 text-zinc-500">Edad</label>
-                                <input type="number" id="input-age" class="calc-input w-full border-b-2 border-zinc-200 py-2 outline-none focus:border-red-600 font-black text-xl bg-transparent" placeholder="00">
-                            </div>
-                        </div>
-                        <button id="btn-calcular" disabled onclick="calculateAndNext()" class="w-full bg-red-600 text-white py-5 font-black uppercase tracking-widest text-sm hover:bg-black transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-red-600 mt-4">
-                            CALCULAR RESULTADO
-                        </button>
-                    </div>
-                </div>
-
-                <!-- PASO 5: RESULTADO -->
-                <div class="step-container flex-col w-full text-center" id="step-5">
-                    <h2 class="text-4xl heading-black mb-8">TU ESTRATEGIA <span class="text-red-600">PERSONALIZADA</span></h2>
+                <div class="bg-white border border-zinc-200 shadow-2xl p-8 md:p-12 relative overflow-hidden min-h-[500px] flex flex-col justify-center">
                     
-                    <div class="bg-zinc-50 p-8 border border-zinc-200 mb-10 text-left">
-                        <div class="grid grid-cols-2 gap-8 mb-8">
-                            <div>
-                                <p class="text-[10px] font-black uppercase text-zinc-400 mb-1">Objetivo</p>
-                                <p class="font-black uppercase text-sm" id="res-objective">-</p>
-                            </div>
-                            <div>
-                                <p class="text-[10px] font-black uppercase text-zinc-400 mb-1">Nivel</p>
-                                <p class="font-black uppercase text-sm" id="res-level">-</p>
-                            </div>
-                            <div>
-                                <p class="text-[10px] font-black uppercase text-zinc-400 mb-1">Frecuencia</p>
-                                <p class="font-black uppercase text-sm"><span id="res-days">-</span> Días / Semana</p>
-                            </div>
-                            <div>
-                                <p class="text-[10px] font-black uppercase text-zinc-400 mb-1">Calorías Objetivo</p>
-                                <p class="font-black uppercase text-2xl text-red-600 italic"><span id="res-calories">0</span> kcal</p>
-                            </div>
-                        </div>
-                        <div class="border-t border-zinc-200 pt-6">
-                            <p class="text-xs font-bold text-zinc-500 uppercase italic">Este es tu punto de partida. Para obtener el plan de entrenamiento detallado y la lista de la compra, pulsa el botón inferior.</p>
+                    <!-- PASO 0: AVISO COMPROMISO -->
+                    <div class="step-container flex-col text-center active" id="step-0">
+                        <i data-lucide="shield-alert" class="w-20 h-20 text-red-600 mx-auto mb-8"></i>
+                        <h2 class="text-4xl heading-black mb-6">AVISO DE COMPROMISO <span class="text-red-600">ABSOLUTO</span></h2>
+                        <p class="text-zinc-600 text-lg mb-10 font-medium leading-relaxed">
+                            Este plan servirá como toma de contacto del primer mes. Para que tenga efecto, el compromiso debe ser total. Si no estás dispuesto a dar el 100%, cierra esta página ahora.
+                        </p>
+                        <button type="button" onclick="nextStep()" class="bg-red-600 text-white px-12 py-5 font-black uppercase tracking-widest text-sm hover:bg-black transition-all mx-auto">
+                            ACEPTO EL RETO
+                        </button>
+                    </div>
+
+                    <!-- PASO 1: OBJETIVO -->
+                    <div class="step-container flex-col w-full" id="step-1">
+                        <h2 class="text-3xl heading-black mb-8 text-center">¿CUÁL ES TU <span class="text-red-600">OBJETIVO</span>?</h2>
+                        <div class="grid gap-4 w-full">
+                            <button type="button" class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="objective" data-value="Ganar masa muscular">
+                                <span>Ganar masa muscular</span><i data-lucide="check-circle-2" class="hidden"></i>
+                            </button>
+                            <button type="button" class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="objective" data-value="Pérdida de grasa">
+                                <span>Pérdida de grasa</span><i data-lucide="check-circle-2" class="hidden"></i>
+                            </button>
+                            <button type="button" class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="objective" data-value="Recomposición corporal">
+                                <span>Recomposición corporal</span><i data-lucide="check-circle-2" class="hidden"></i>
+                            </button>
                         </div>
                     </div>
 
-                    <a href="contacto.html" class="block w-full bg-red-600 text-white py-6 text-xl font-black uppercase border-2 border-red-600 hover:bg-black hover:border-black transition-all shadow-xl">
-                        OBTENER MI PLAN COMPLETO
-                    </a>
-                </div>
+                    <!-- PASO 2: NIVEL -->
+                    <div class="step-container flex-col w-full" id="step-2">
+                        <h2 class="text-3xl heading-black mb-8 text-center">TU <span class="text-red-600">NIVEL ACTUAL</span></h2>
+                        <div class="grid gap-4 w-full">
+                            <button type="button" class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="level" data-value="Nunca he pisado un gimnasio">
+                                <span>Nunca he pisado un gimnasio</span><i data-lucide="check-circle-2" class="hidden"></i>
+                            </button>
+                            <button type="button" class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="level" data-value="Nivel Medio">
+                                <span>Nivel Medio</span><i data-lucide="check-circle-2" class="hidden"></i>
+                            </button>
+                            <button type="button" class="option-btn p-6 border-2 text-left font-black uppercase tracking-widest text-sm sm:text-base border-zinc-200 hover:border-black flex justify-between items-center" data-type="level" data-value="Nivel Alto">
+                                <span>Nivel Alto</span><i data-lucide="check-circle-2" class="hidden"></i>
+                            </button>
+                        </div>
+                    </div>
 
-                <!-- Botón Atrás (Flotante en el bottom del card) -->
-                <div id="back-btn-container" class="mt-8 flex justify-between hidden">
-                    <button onclick="prevStep()" class="flex items-center gap-2 text-xs font-black uppercase text-zinc-400 hover:text-black transition-colors">
-                        <i data-lucide="chevron-left" class="w-4 h-4"></i> Atrás
-                    </button>
+                    <!-- PASO 3: DÍAS -->
+                    <div class="step-container flex-col w-full" id="step-3">
+                        <h2 class="text-3xl heading-black mb-8 text-center">DÍAS <span class="text-red-600">DISPONIBLES</span></h2>
+                        <div class="grid grid-cols-2 gap-4 w-full">
+                            <button type="button" class="option-btn p-10 border-2 text-center font-black uppercase tracking-widest text-2xl border-zinc-200 hover:border-black" data-type="days" data-value="2">2</button>
+                            <button type="button" class="option-btn p-10 border-2 text-center font-black uppercase tracking-widest text-2xl border-zinc-200 hover:border-black" data-type="days" data-value="3">3</button>
+                            <button type="button" class="option-btn p-10 border-2 text-center font-black uppercase tracking-widest text-2xl border-zinc-200 hover:border-black" data-type="days" data-value="4">4</button>
+                            <button type="button" class="option-btn p-10 border-2 text-center font-black uppercase tracking-widest text-2xl border-zinc-200 hover:border-black" data-type="days" data-value="5">5</button>
+                        </div>
+                    </div>
+
+                    <!-- PASO 4: CALCULADORA -->
+                    <div class="step-container flex-col w-full" id="step-4">
+                        <h2 class="text-3xl heading-black mb-8 text-center">CALCULADORA <span class="text-red-600">METABÓLICA</span></h2>
+                        <div class="space-y-6 w-full">
+                            <div class="flex gap-4">
+                                <button type="button" class="gender-btn flex-1 py-4 font-black uppercase text-xs border-2 bg-black text-white border-black" data-gender="Hombre">
+                                    Hombre
+                                </button>
+                                <button type="button" class="gender-btn flex-1 py-4 font-black uppercase text-xs border-2 border-zinc-200 text-black hover:border-black" data-gender="Mujer">
+                                    Mujer
+                                </button>
+                            </div>
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div>
+                                    <label class="block text-[10px] font-black uppercase mb-2 text-zinc-500">Peso (kg)</label>
+                                    <input type="number" id="input-weight" class="calc-input w-full border-b-2 border-zinc-200 py-2 outline-none focus:border-red-600 font-black text-xl bg-transparent" placeholder="00">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-black uppercase mb-2 text-zinc-500">Altura (cm)</label>
+                                    <input type="number" id="input-height" class="calc-input w-full border-b-2 border-zinc-200 py-2 outline-none focus:border-red-600 font-black text-xl bg-transparent" placeholder="000">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-black uppercase mb-2 text-zinc-500">Edad</label>
+                                    <input type="number" id="input-age" class="calc-input w-full border-b-2 border-zinc-200 py-2 outline-none focus:border-red-600 font-black text-xl bg-transparent" placeholder="00">
+                                </div>
+                            </div>
+                            <button id="btn-calcular" type="button" disabled onclick="calculateAndNext()" class="w-full bg-red-600 text-white py-5 font-black uppercase tracking-widest text-sm hover:bg-black transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-red-600 mt-4">
+                                CALCULAR RESULTADO
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- PASO 5: RESULTADO -->
+                    <div class="step-container flex-col w-full text-center" id="step-5">
+                        <h2 class="text-4xl heading-black mb-8">TU ESTRATEGIA <span class="text-red-600">PERSONALIZADA</span></h2>
+                        
+                        <div class="bg-zinc-50 p-8 border border-zinc-200 mb-6 text-left">
+                            <div class="grid grid-cols-2 gap-8 mb-8">
+                                <div>
+                                    <p class="text-[10px] font-black uppercase text-zinc-400 mb-1">Objetivo</p>
+                                    <p class="font-black uppercase text-sm" id="res-objective">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-black uppercase text-zinc-400 mb-1">Nivel</p>
+                                    <p class="font-black uppercase text-sm" id="res-level">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-black uppercase text-zinc-400 mb-1">Frecuencia</p>
+                                    <p class="font-black uppercase text-sm"><span id="res-days">-</span> Días / Semana</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-black uppercase text-zinc-400 mb-1">Calorías Objetivo</p>
+                                    <p class="font-black uppercase text-2xl text-red-600 italic"><span id="res-calories">0</span> kcal</p>
+                                </div>
+                            </div>
+                            <div class="border-t border-zinc-200 pt-6">
+                                <p class="text-xs font-bold text-zinc-500 uppercase italic">Este es tu punto de partida. Para obtener el plan de entrenamiento detallado y la lista de la compra, pulsa el botón inferior.</p>
+                            </div>
+                        </div>
+
+                        <!-- RECOLECCIÓN DE EMAIL Y CHECKBOX DE PRIVACIDAD OBLIGATORIO -->
+                        <div class="text-left mb-6 space-y-4">
+                            <div>
+                                <label class="block text-xs font-black uppercase mb-2">Correo Electrónico</label>
+                                <input type="email" id="form-email-field" required class="w-full border border-zinc-300 bg-zinc-50 px-4 py-3 outline-none focus:border-red-600 transition font-medium" placeholder="tu@email.com">
+                            </div>
+                            <div class="flex items-start gap-2 py-1">
+                                <input type="checkbox" id="privacy-check" required class="mt-1 cursor-pointer accent-red-600">
+                                <label for="privacy-check" class="text-[10px] text-zinc-500 font-bold cursor-pointer leading-tight uppercase">
+                                    Los datos recogidos en el formulario son unicamente para contactar con el cliente sobre los servicios interesados
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="block w-full bg-red-600 text-white py-6 text-xl font-black uppercase border-2 border-red-600 hover:bg-black hover:border-black transition-all shadow-xl">
+                            OBTENER MI PLAN COMPLETO
+                        </button>
+                    </div>
+
+                    <!-- Botón Atrás (Flotante en el bottom del card) -->
+                    <div id="back-btn-container" class="mt-8 flex justify-between hidden">
+                        <button type="button" onclick="prevStep()" class="flex items-center gap-2 text-xs font-black uppercase text-zinc-400 hover:text-black transition-colors">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i> Atrás
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </main>
 
@@ -392,6 +418,25 @@
         </p>
     </footer>
 
+    <!-- Contenedor para notificaciones estilo Toast -->
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-[200] flex flex-col gap-3 max-w-sm w-full"></div>
+
+    <!-- POP UP / MODAL DE ÉXITO REESTRUCTURADO -->
+    <div id="success-modal" class="fixed inset-0 z-[110] hidden bg-black/90 flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="bg-white p-8 md:p-12 text-center relative max-w-xl w-[90%] border-t-4 border-red-600 shadow-2xl">
+            <button type="button" onclick="closeSuccessModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-red-600 transition">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="w-16 h-16 bg-red-600 text-white flex items-center justify-center rounded-full mx-auto mb-6">
+                <i data-lucide="check" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-3xl font-black uppercase tracking-[-0.05em] mb-4 text-black">¡SOLICITUD PROCESADA!</h3>
+            <p class="text-zinc-600 font-medium text-base md:text-lg leading-relaxed">
+                En menos de 72h recibirás tu plan gratuito sin compromiso, completamente revisado y personalizado a tus requerimientos para que puedas empezar a construir tu camino para el cambio.
+            </p>
+        </div>
+    </div>
+
     <!-- LOGICA FORMULARIO Y CALCULADORA (Vanilla JS) -->
     <script>
         // Inicializar iconos
@@ -406,15 +451,18 @@
 
         // Variables de estado del Formulario
         let currentStep = 0;
-        const totalSteps = 6; // 0 al 5
+        const totalSteps = 6; 
+        let submitted = false;
+
         const formData = {
             objective: "",
             level: "",
             days: "",
-            gender: "male",
+            gender: "Hombre",
             weight: "",
             height: "",
-            age: ""
+            age: "",
+            calculatedCalories: 0
         };
 
         const progressBar = document.getElementById('progress-bar');
@@ -427,7 +475,6 @@
                 const type = this.getAttribute('data-type');
                 const value = this.getAttribute('data-value');
                 
-                // Remover clase 'selected' de los hermanos
                 const siblings = this.parentElement.querySelectorAll('.option-btn');
                 siblings.forEach(s => {
                     s.classList.remove('selected');
@@ -435,15 +482,12 @@
                     if(icon) icon.classList.add('hidden');
                 });
 
-                // Añadir clase 'selected' al clickeado
                 this.classList.add('selected');
                 const icon = this.querySelector('i');
                 if(icon) icon.classList.remove('hidden');
 
-                // Guardar en formData
                 formData[type] = value;
 
-                // Pequeño delay para que el usuario vea la selección antes de pasar
                 setTimeout(() => {
                     nextStep();
                 }, 300);
@@ -453,12 +497,10 @@
         // Botones de Género
         document.querySelectorAll('.gender-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                // Resetear todos
                 document.querySelectorAll('.gender-btn').forEach(b => {
                     b.classList.remove('bg-black', 'text-white', 'border-black');
                     b.classList.add('border-zinc-200', 'text-black');
                 });
-                // Marcar seleccionado
                 this.classList.remove('border-zinc-200', 'text-black');
                 this.classList.add('bg-black', 'text-white', 'border-black');
                 formData.gender = this.getAttribute('data-gender');
@@ -491,7 +533,7 @@
 
             // Mifflin-St Jeor Equation
             let bmr = (10 * w) + (6.25 * h) - (5 * a);
-            bmr = formData.gender === "male" ? bmr + 5 : bmr - 161;
+            bmr = formData.gender === "Hombre" ? bmr + 5 : bmr - 161;
 
             const activityFactors = {
                 "2": 1.2,
@@ -500,35 +542,134 @@
                 "5": 1.725
             };
             
-            // Factor por defecto si no eligió días
             const factor = activityFactors[formData.days] || 1.2; 
             let tdee = bmr * factor;
 
-            // Ajuste por objetivo
             if (formData.objective === "Ganar masa muscular") tdee += 300;
             if (formData.objective === "Pérdida de grasa") tdee -= 500;
-            // Recomposición se mantiene en mantenimiento o ligero déficit, lo dejamos igual
 
-            return Math.round(tdee);
+            formData.calculatedCalories = Math.round(tdee);
+            return formData.calculatedCalories;
         }
 
         function calculateAndNext() {
-            // Rellenar datos en la pantalla final antes de mostrarla
+            const targetCalories = calculateCalories();
+            
             document.getElementById('res-objective').textContent = formData.objective || "No definido";
             document.getElementById('res-level').textContent = formData.level || "No definido";
             document.getElementById('res-days').textContent = formData.days || "X";
-            document.getElementById('res-calories').textContent = calculateCalories();
+            document.getElementById('res-calories').textContent = targetCalories;
             
             nextStep();
         }
 
+        // Sistema de envío y tracking a Google Forms
+        function handleQuizSubmit(event) {
+            const emailInput = document.getElementById('form-email-field').value.trim();
+            const privacyCheck = document.getElementById('privacy-check').checked;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailInput || !emailRegex.test(emailInput)) {
+                triggerToast("Email Inválido", "Por favor, introduce un correo electrónico correcto.");
+                event.preventDefault();
+                return false;
+            }
+
+            if (!privacyCheck) {
+                triggerToast("Aviso Legal", "Debes aceptar el tratamiento de datos para continuar.");
+                event.preventDefault();
+                return false;
+            }
+
+            // Mapeo exacto de los datos recolectados a los inputs ocultos vinculados al form
+            document.getElementById('entry-objective').value = formData.objective;
+            document.getElementById('entry-level').value = formData.level;
+            document.getElementById('entry-days').value = formData.days;
+            
+            // Empaquetado completo de los datos metabólicos e historial en una sola cadena legible
+            document.getElementById('entry-calc-data').value = `Sexo: ${formData.gender} | Peso: ${formData.weight}kg | Altura: ${formData.height}cm | Edad: ${formData.age} años | Resultado: ${formData.calculatedCalories} kcal`;
+            document.getElementById('entry-email').value = emailInput;
+
+            submitted = true;
+            return true;
+        }
+
+        function showSuccessModal() {
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById('success-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                resetQuiz();
+            }, 300);
+        }
+
+        function resetQuiz() {
+            submitted = false;
+            currentStep = 0;
+            
+            // Limpiar formulario y variables de datos
+            document.getElementById('quiz-form').reset();
+            formData.objective = "";
+            formData.level = "";
+            formData.days = "";
+            formData.gender = "Hombre";
+            formData.weight = "";
+            formData.height = "";
+            formData.age = "";
+            formData.calculatedCalories = 0;
+
+            // Resetear la estética de los botones activos
+            document.querySelectorAll('.option-btn').forEach(s => {
+                s.classList.remove('selected');
+                const icon = s.querySelector('i');
+                if(icon) icon.classList.add('hidden');
+            });
+            
+            document.querySelectorAll('.gender-btn').forEach(b => {
+                b.classList.remove('bg-black', 'text-white', 'border-black');
+                b.classList.add('border-zinc-200', 'text-black');
+            });
+            const defaultGenderBtn = document.querySelector('[data-gender="Hombre"]');
+            if (defaultGenderBtn) {
+                defaultGenderBtn.classList.remove('border-zinc-200', 'text-black');
+                defaultGenderBtn.classList.add('bg-black', 'text-white', 'border-black');
+            }
+
+            document.getElementById('btn-calcular').disabled = true;
+            updateView();
+        }
+
+        function triggerToast(title, message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'p-4 rounded-xl border border-red-600/30 bg-zinc-950/95 shadow-2xl flex gap-3 items-start animate-[slideIn_0.3s_ease-out] z-[210]';
+            toast.innerHTML = `
+                <div class="shrink-0 text-red-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                </div>
+                <div>
+                    <h4 class="text-sm font-black text-white uppercase tracking-tight">${title}</h4>
+                    <p class="text-xs text-zinc-400 mt-1">${message}</p>
+                </div>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'transition-all', 'duration-500');
+                setTimeout(() => toast.remove(), 500);
+            }, 4000);
+        }
+
         // Navegación de pasos
         function updateView() {
-            // Actualizar barra de progreso
             const percentage = (currentStep / (totalSteps - 1)) * 100;
             progressBar.style.width = `${percentage}%`;
 
-            // Colores de labels de progreso
             progressLabels.forEach((label, index) => {
                 if (index <= currentStep) {
                     label.classList.remove('text-zinc-300');
@@ -539,25 +680,23 @@
                 }
             });
 
-            // Animación de los contenedores
             const stepsDivs = document.querySelectorAll('.step-container');
             stepsDivs.forEach((step, index) => {
                 if (index === currentStep) {
                     step.classList.remove('animating-out');
                     step.classList.add('active');
                 } else if (step.classList.contains('active')) {
-                    // Animación de salida
                     step.classList.add('animating-out');
                     step.classList.remove('active');
                     setTimeout(() => {
                         step.classList.remove('animating-out');
-                    }, 400); // duracion de la transicion CSS
+                    }, 400); 
                 } else {
                     step.classList.remove('active', 'animating-out');
                 }
             });
 
-            // Botón Atrás
+            // Restricción del botón atrás para conservar la experiencia fluida original
             if (currentStep > 0 && currentStep < (totalSteps - 1)) {
                 backBtnContainer.classList.remove('hidden');
             } else {
