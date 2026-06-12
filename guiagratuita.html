@@ -313,7 +313,6 @@
         <div class="max-w-6xl mx-auto px-6 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
                 
-                <!-- Columna Izquierda: Copywriting persuasivo y formulario -->
                 <div class="lg:col-span-7 space-y-8">
                     <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-black bg-red-100 border border-red-200 text-red-600 uppercase tracking-widest">
                         <i class="fa-solid fa-lock-open text-[10px]"></i> RECURSO LIBRE DE SPAM
@@ -324,10 +323,9 @@
                     </h2>
                     
                     <p class="text-zinc-700 text-base md:text-lg leading-relaxed">
-                        He condensado mis años de preparación para campeonatos nacionales y mi experiencia con decenas de clientes en una guía práctica en PDF de 5 pasos para acelerar tu desarrollo muscular de manera 100% natural.
+                        He condensado mis años de preparación para campeonatos nacionales y mi experiencia con decenas de clientes en una guía práctica en PDF de 5 pasos para acelerar tu development muscular de manera 100% natural.
                     </p>
                     
-                    <!-- Bullet points del Lead Magnet -->
                     <ul class="space-y-5">
                         <li class="flex items-start gap-4">
                             <span class="w-6 h-6 rounded-full bg-red-600 text-white flex items-center justify-center mt-1 shrink-0 text-xs">
@@ -358,28 +356,23 @@
                         </li>
                     </ul>
 
-                    <!-- Formulario de descarga directa -->
                     <div class="bg-white p-6 md:p-8 border border-zinc-200 shadow-xl rounded-xl">
-                        <!-- Iframe invisible para capturar el envío del lead form y evitar redirecciones -->
                         <iframe name="lead_hidden_iframe" id="lead_hidden_iframe" style="display:none;"></iframe>
 
                         <form id="leadCaptureForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeE7Wxq2yZ8_YWOaqAGI_IPAbloXKUbujus6wQVOp0ymuF-dg/formResponse" method="POST" target="lead_hidden_iframe" onsubmit="return handleLeadCapture(event)" class="space-y-4">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div class="space-y-1">
                                     <label class="text-[10px] font-black uppercase tracking-widest text-zinc-500">Tu Nombre</label>
-                                    <!-- Mapeado a entry.685868441 -->
                                     <input type="text" name="entry.685868441" id="leadNameInput" required placeholder="Escribe tu nombre..." 
                                         class="w-full px-4 py-3 border border-zinc-300 rounded-lg text-black bg-zinc-50 focus:border-red-600 focus:bg-white outline-none transition">
                                 </div>
                                 <div class="space-y-1">
                                     <label class="text-[10px] font-black uppercase tracking-widest text-zinc-500">Tu Correo o Teléfono</label>
-                                    <!-- Mapeado a entry.487977248 -->
                                     <input type="text" name="entry.487977248" id="leadEmailInput" required placeholder="tu@email.com o nº teléfono..." 
                                         class="w-full px-4 py-3 border border-zinc-300 rounded-lg text-black bg-zinc-50 focus:border-red-600 focus:bg-white outline-none transition">
                                 </div>
                             </div>
                             
-                            <!-- Checkbox de marcado obligatorio -->
                             <div class="flex items-start gap-2 py-1">
                                 <input type="checkbox" id="lead-privacy-check" required class="mt-1 cursor-pointer accent-red-600">
                                 <label for="lead-privacy-check" class="text-[10px] text-zinc-500 font-bold cursor-pointer leading-tight">
@@ -397,7 +390,6 @@
                             </p>
                         </form>
 
-                        <!-- Éxito de suscripción con descarga directa -->
                         <div id="leadSuccessContainer" class="hidden text-center py-4 space-y-5">
                             <div class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center mx-auto text-2xl shadow-lg">
                                 <i class="fa-solid fa-check"></i>
@@ -414,25 +406,19 @@
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Mockup 3D premium del manual de culturismo -->
                 <div class="lg:col-span-5 flex justify-center book-perspective py-10">
                     <div class="book-container relative w-72 h-[430px] shadow-2xl">
-                        <!-- Lomo del libro -->
                         <div class="book-spine"></div>
-                        <!-- Páginas de fondo -->
                         <div class="book-pages"></div>
                         
-                        <!-- Portada Principal Brutalista -->
                         <div class="absolute inset-0 bg-zinc-950 border border-red-600/30 rounded-r-lg p-6 flex flex-col justify-between overflow-hidden">
                             <div class="absolute top-0 right-0 w-36 h-36 bg-red-600/10 rounded-full blur-2xl pointer-events-none"></div>
                             
-                            <!-- Header de la portada -->
                             <div class="flex items-center justify-between border-b border-zinc-800 pb-3 z-10">
                                 <span class="text-[9px] font-black tracking-widest text-red-600">JPUELLES</span>
                                 <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">REV. 2026</span>
                             </div>
 
-                            <!-- Bloque del título -->
                             <div class="my-auto z-10 py-6">
                                 <p class="text-[10px] font-black text-brand-gold uppercase tracking-widest mb-3 font-mono">
                                     PROTOCOLO NATURAL DE ÉLITE
@@ -445,7 +431,6 @@
                                 </p>
                             </div>
 
-                            <!-- Footer de la portada -->
                             <div class="flex items-center justify-between border-t border-zinc-800 pt-4 z-10">
                                 <span class="text-[10px] text-zinc-400 uppercase tracking-widest font-black">MANUAL COMPLETO</span>
                                 <span class="text-[10px] text-red-600 font-mono font-black">EDICIÓN I</span>
@@ -467,7 +452,6 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Enfoque Errante -->
                 <div class="bg-zinc-50 p-8 border border-zinc-200 rounded-xl space-y-4">
                     <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xl font-bold">
                         ✕
@@ -486,7 +470,6 @@
                     </ul>
                 </div>
 
-                <!-- Enfoque JPuelles -->
                 <div class="bg-zinc-900 p-8 border border-red-600/30 rounded-xl space-y-4 text-white">
                     <div class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
                         ✓
@@ -515,27 +498,22 @@
                 <p class="text-zinc-500 font-bold uppercase tracking-widest">Rellena el formulario y evaluaré tu caso personalmente para el TEAM.</p>
             </div>
 
-            <!-- Iframe invisible para capturar la respuesta del Google Form y evitar redirecciones -->
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { document.getElementById('success-modal').classList.remove('hidden'); setTimeout(() => document.getElementById('success-modal').classList.remove('opacity-0'), 10); document.getElementById('contacto-form').reset(); submitted = false; }"></iframe>
             
-            <!-- Formulario conectado al Google Form con redirección controlada por iframe -->
             <form id="contacto-form" action="https://docs.google.com/forms/d/e/1FAIpQLSetYeIkgT5bQBbk-qilUULgmRuozaAm1Y0FZUjRnEiWIpM9ZQ/formResponse" method="POST" target="hidden_iframe" class="space-y-8 bg-white p-8 md:p-12 border border-zinc-200 shadow-xl rounded-xl" onsubmit="return validateForm()">
                 <div class="grid md:grid-cols-2 gap-8">
                     <div>
                         <label class="block text-xs font-black uppercase mb-2">Nombre</label>
-                        <!-- Campo mapeado a entry.81777955 -->
                         <input type="text" name="entry.81777955" id="form-nombre" class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition text-black" placeholder="Tu nombre..." required>
                     </div>
                     <div>
                         <label class="block text-xs font-black uppercase mb-2">WhatsApp / Email</label>
-                        <!-- Campo mapeado a entry.1238646382 -->
                         <input type="text" name="entry.1238646382" id="form-contacto" class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition text-black" placeholder="Para contactarte..." required>
                         <p id="contacto-error" class="text-red-600 text-xs mt-1 hidden font-bold">Por favor, introduce un email o número de teléfono válido.</p>
                     </div>
                 </div>
                 <div>
                     <label class="block text-xs font-black uppercase mb-2">Tu mayor frustración actual</label>
-                    <!-- Campo mapeado a entry.555950925 -->
                     <textarea name="entry.555950925" id="form-frustracion" class="w-full border-b-2 border-zinc-300 bg-transparent py-3 outline-none focus:border-red-600 transition text-black" rows="4" placeholder="¿Qué te impide progresar?" required></textarea>
                 </div>
                 <div class="flex items-start gap-2">
@@ -587,10 +565,8 @@
         </p>
     </footer>
 
-    <!-- Contenedor para notificaciones estilo Toast -->
     <div id="toastContainer" class="fixed bottom-6 right-6 z-[200] flex flex-col gap-3 max-w-sm w-full"></div>
 
-    <!-- HTML DEL MODAL DE ÉXITO (FORMULARIO) -->
     <div id="success-modal" class="fixed inset-0 z-[110] hidden bg-black/90 flex items-center justify-center opacity-0 transition-opacity duration-300">
         <div class="bg-white p-8 md:p-12 text-center relative max-w-md w-[90%] border-t-4 border-red-600 shadow-2xl">
             <button onclick="closeSuccessModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-red-600 transition">
@@ -769,7 +745,7 @@
             triggerToast("Descarga Iniciada", "Consigue tu copia en PDF. Revisa tu carpeta de descargas.");
             
             const textContent = "JPUELLES ATHLETICS - PROTOCOLO NATURAL DE ELITE";
-            const blob = new Blob([textContent], { type: 'text/plain' });
+            const blob = new Blob([textContent], { type: 'application/pdf' });
             const tempUrl = URL.createObjectURL(blob);
             
             const link = document.createElement('a');
