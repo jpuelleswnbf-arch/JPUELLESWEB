@@ -323,7 +323,7 @@
                     </h2>
                     
                     <p class="text-zinc-700 text-base md:text-lg leading-relaxed">
-                        He condensado mis años de preparación para campeonatos nacionales y mi experiencia con decenas de clientes en una guía práctica en PDF de 5 pasos para acelerar tu development muscular de manera 100% natural.
+                        He condensado mis años de preparación para campeonatos nacionales y mi experiencia con decenas de clientes en una guía práctica en PDF de 5 pasos para acelerar tu desarrollo muscular de manera 100% natural.
                     </p>
                     
                     <ul class="space-y-5">
@@ -679,12 +679,6 @@
         let leadSubmitted = false;
 
         function handleLeadCapture(event) {
-            // Impedir que se pulse más de una vez
-            if (leadSubmitted) {
-                event.preventDefault();
-                return false;
-            }
-
             const name = document.getElementById('leadNameInput').value.trim();
             const contactInput = document.getElementById('leadEmailInput').value.trim();
             const privacyCheck = document.getElementById('lead-privacy-check').checked;
@@ -709,6 +703,12 @@
             // Comprobar checkbox de obligado marcado
             if (!privacyCheck) {
                 triggerToast("Consentimiento Requerido", "Debes aceptar los términos de uso y privacidad.");
+                event.preventDefault();
+                return false;
+            }
+
+            // Impedir envíos múltiples
+            if (leadSubmitted) {
                 event.preventDefault();
                 return false;
             }
@@ -740,16 +740,12 @@
             return true;
         }
 
-        // Descarga del manual "Guiagratuita.pdf"
+        // Descarga del manual "Guiagratuita.pdf" real desde la raíz del despliegue
         function triggerPdfDownload() {
             triggerToast("Descarga Iniciada", "Consigue tu copia en PDF. Revisa tu carpeta de descargas.");
             
-            const textContent = "JPUELLES ATHLETICS - PROTOCOLO NATURAL DE ELITE";
-            const blob = new Blob([textContent], { type: 'application/pdf' });
-            const tempUrl = URL.createObjectURL(blob);
-            
             const link = document.createElement('a');
-            link.href = tempUrl;
+            link.href = './Guiagratuita.pdf'; // Apunta al archivo real guardado en la raíz de tu proyecto
             link.setAttribute('download', 'Guiagratuita.pdf');
             document.body.appendChild(link);
             link.click();
